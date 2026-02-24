@@ -1,0 +1,158 @@
+{% extends "base.html" %}
+
+{% block title %}Machine Learning Model - Your Portfolio{% endblock %}
+
+{% block content %}
+<style>
+    .project-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 24px;
+    }
+    .project-page h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--heading-color);
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .project-page h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--heading-color);
+        margin-top: 48px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--accent);
+        display: inline-block;
+    }
+    .project-page p, .project-page li {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        font-size: 0.98rem;
+    }
+    .project-page ul {
+        padding-left: 24px;
+        margin: 12px 0;
+    }
+    .project-page li {
+        margin-bottom: 8px;
+    }
+    .project-page section {
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    .author-info {
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+    }
+    .author-info strong {
+        color: var(--text-secondary);
+    }
+    .image-container {
+        text-align: center;
+        margin: 30px 0;
+    }
+    .image-container img {
+        width: 100%;
+        max-width: 700px;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 30px var(--shadow);
+        border: 1px solid var(--border);
+    }
+    .image-container .caption {
+        font-style: italic;
+        color: var(--text-muted);
+        margin-top: 10px;
+        font-size: 0.88rem;
+    }
+    .project-page pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        overflow-x: auto;
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+    .project-page code {
+        color: var(--accent);
+        font-family: 'Consolas', 'Monaco', monospace;
+    }
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 32px;
+        font-size: 0.95rem;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="project-page">
+    <a href="{{ url_for('home') }}#projects" class="back-link">&larr; Back to Projects</a>
+
+    <h1>Machine Learning Model</h1>
+
+    <div class="author-info">
+        <p><strong>Author:</strong> Your Name &nbsp;|&nbsp;
+        <strong>Date:</strong> February 2024 &nbsp;|&nbsp;
+        <strong>Tools:</strong> Python, Scikit-Learn, TensorFlow, Keras</p>
+    </div>
+
+    <section>
+        <h2>Project Overview</h2>
+        <p style="text-align: justify;">
+            This project focuses on developing predictive machine learning models to solve classification 
+            and regression problems. Using scikit-learn and TensorFlow, various algorithms were trained, 
+            evaluated, and optimized to achieve high accuracy on real-world datasets.
+        </p>
+    </section>
+
+    <section>
+        <h2>Methodology</h2>
+        <ul>
+            <li>Data preprocessing and feature engineering</li>
+            <li>Model selection and hyperparameter tuning</li>
+            <li>Cross-validation and performance evaluation</li>
+            <li>Model interpretation and feature importance analysis</li>
+            <li>Deployment-ready pipeline creation</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>Implementation</h2>
+        <pre><code># Machine Learning Pipeline
+from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report
+import pandas as pd
+
+# Load and split data
+df = pd.read_csv('dataset.csv')
+X = df.drop('target', axis=1)
+y = df['target']
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+
+# Train and evaluate
+model = RandomForestClassifier(n_estimators=100)
+model.fit(X_train, y_train)
+predictions = model.predict(X_test)
+print(classification_report(y_test, predictions))</code></pre>
+    </section>
+
+    <section>
+        <h2>Results</h2>
+        <p style="text-align: justify;">
+            The optimized model achieved strong performance metrics across multiple evaluation criteria,
+            demonstrating the effectiveness of the chosen approach for this problem domain.
+        </p>
+    </section>
+</div>
+{% endblock %}

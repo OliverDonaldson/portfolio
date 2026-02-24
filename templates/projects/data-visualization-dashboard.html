@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Data Visualization Dashboard - Your Portfolio{% endblock %}
+
+{% block content %}
+<style>
+    .project-page { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+    .project-page h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; color: var(--heading-color); text-align: center; margin-bottom: 12px; }
+    .project-page h2 { font-size: 1.6rem; font-weight: 700; color: var(--heading-color); margin-top: 48px; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid var(--accent); display: inline-block; }
+    .project-page p, .project-page li { color: var(--text-secondary); line-height: 1.8; font-size: 0.98rem; }
+    .project-page ul { padding-left: 24px; margin: 12px 0; }
+    .project-page li { margin-bottom: 8px; }
+    .project-page section { padding: 0; margin-bottom: 40px; }
+    .author-info { text-align: center; font-size: 0.9rem; color: var(--text-muted); margin-bottom: 40px; }
+    .author-info strong { color: var(--text-secondary); }
+    .back-link { display: inline-flex; align-items: center; gap: 6px; font-weight: 600; color: var(--accent); margin-bottom: 32px; font-size: 0.95rem; }
+    .back-link:hover { text-decoration: underline; }
+</style>
+
+<div class="project-page">
+    <a href="{{ url_for('home') }}#projects" class="back-link">&larr; Back to Projects</a>
+
+    <h1>Data Visualization Dashboard</h1>
+
+    <div class="author-info">
+        <p><strong>Author:</strong> Your Name &nbsp;|&nbsp;
+        <strong>Date:</strong> Coming Soon &nbsp;|&nbsp;
+        <strong>Tools:</strong> Tableau, Power BI, SQL</p>
+    </div>
+
+    <section>
+        <h2>Project Overview</h2>
+        <p>Interactive dashboard built with Tableau/Power BI to visualize business metrics and KPIs for stakeholder reporting. Details coming soon.</p>
+    </section>
+</div>
+{% endblock %}

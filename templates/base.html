@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your Portfolio{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    {% if GA_MEASUREMENT_ID %}
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ GA_MEASUREMENT_ID }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', '{{ GA_MEASUREMENT_ID }}', {
+        'anonymize_ip': true
+      });
+    </script>
+    {% endif %}
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="topnav">
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="nav-link">Home</a>
+            <a href="{{ url_for('home') }}#about" class="nav-link">About</a>
+            <a href="{{ url_for('home') }}#projects" class="nav-link">Projects</a>
+            <a href="{{ url_for('home') }}#certificates" class="nav-link">Certificates</a>
+        </div>
+
+        <a href="{{ url_for('home') }}" class="nav-logo">
+            <span>OD</span>
+        </a>
+
+        <div class="nav-socials">
+            <a href="https://github.com/oliver-donaldson" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/oliver-donaldson/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="{{ url_for('static', filename='files/Oliver Donaldson CV.pdf') }}" download aria-label="Download CV">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile nav overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-content">
+            <a href="{{ url_for('home') }}" class="mobile-nav-link">Home</a>
+            <a href="{{ url_for('home') }}#about" class="mobile-nav-link">About</a>
+            <a href="{{ url_for('home') }}#projects" class="mobile-nav-link">Projects</a>
+            <a href="{{ url_for('home') }}#certificates" class="mobile-nav-link">Certificates</a>
+            <div class="mobile-nav-socials">
+                <a href="https://github.com/oliver-donaldson" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/oliver-donaldson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; {{ 2026 }} All Rights Reserved.</p>
+            <p>Built with <span class="heart">&hearts;</span> by <a href="{{ url_for('home') }}">Oliver Donaldson</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ─── Theme Toggle ───
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        
+        function setTheme(isDark) {
+            root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Default to dark theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme === 'dark');
+        
+        themeToggle.addEventListener('click', () => {
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+
+        // ─── Mobile Menu ───
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+        
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+
+        // ─── Slideshow ───
+        let current = 0; 
+        let slides = [];
+        let dots = [];
+        let slideInterval;
+        let isPaused = false;
+        let isAnimating = false;
+            
+        document.addEventListener("DOMContentLoaded", () => {
+            slides = Array.from(document.getElementsByClassName("mySlides"));
+            dots   = Array.from(document.getElementsByClassName("dot"));
+
+            if (!slides.length) return;
+        
+            slides.forEach(s => s.classList.remove('is-current','is-entering','is-exiting'));
+            slides[0].classList.add('is-current');
+            
+            if (dots.length) {
+                dots.forEach(d => d.classList.remove('active'));
+                dots[0].classList.add('active');
+            }
+        
+            startSlideshow();
+        });
+
+        function startSlideshow() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                if (!isPaused && !isAnimating) {
+                    nextSlide();
+                }
+            }, 4000);
+        }
+
+        function nextSlide() {
+            if (isAnimating || slides.length <= 1) return;
+            moveSlide((current + 1) % slides.length);
+        }
+
+        function prevSlide() {
+            if (isAnimating || slides.length <= 1) return;
+            moveSlide((current - 1 + slides.length) % slides.length);
+        }
+
+        function moveSlide(newIndex) {
+            if (newIndex === current || isAnimating) return;
+            
+            isAnimating = true;
+            const oldSlide = slides[current];
+            const newSlide = slides[newIndex];
+            
+            oldSlide.classList.add('is-exiting');
+            newSlide.classList.add('is-entering');
+            
+            setTimeout(() => {
+                oldSlide.classList.remove('is-current', 'is-exiting');
+                newSlide.classList.remove('is-entering');
+                newSlide.classList.add('is-current');
+                
+                if (dots.length) {
+                    dots[current].classList.remove('active');
+                    dots[newIndex].classList.add('active');
+                }
+                
+                current = newIndex;
+                isAnimating = false;
+            }, 600);
+        }
+
+        function currentSlide(n) {
+            moveSlide(n - 1);
+        }
+
+        // Pause on hover
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.querySelector('.slideshow-container');
+            if (container) {
+                container.addEventListener('mouseenter', () => { isPaused = true; });
+                container.addEventListener('mouseleave', () => { isPaused = false; });
+            }
+        });
+
+        // ─── Scroll Animations ───
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight);
+        }
+
+        function isElementPartiallyVisible(el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
+        }
+
+        function checkScrollAnimations() {
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                if (isElementPartiallyVisible(el)) el.classList.add('show');
+            });
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                if (isElementPartiallyVisible(card)) card.classList.add('visible');
+            });
+
+            document.querySelectorAll('.activity-card').forEach(card => {
+                if (isElementPartiallyVisible(card)) card.classList.add('visible');
+            });
+
+            // Animate stats numbers
+            document.querySelectorAll('.stat-number[data-target]').forEach(stat => {
+                if (isElementPartiallyVisible(stat) && !stat.classList.contains('counted')) {
+                    stat.classList.add('counted');
+                    animateCounter(stat);
+                }
+            });
+        }
+
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const duration = 2000;
+            const start = performance.now();
+            
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(target * eased) + '+';
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('scroll', checkScrollAnimations);
+        document.addEventListener('DOMContentLoaded', checkScrollAnimations);
+
+        // ─── Smooth Scroll for anchor links ───
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                const hashIndex = href.indexOf('#');
+                if (hashIndex === -1) return;
+                const targetId = href.substring(hashIndex + 1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

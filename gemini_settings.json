@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "analytics-mcp": {
+      "command": "pipx",
+      "args": [
+        "run",
+        "analytics-mcp"
+      ],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "path/to/your/credentials.json",
+        "GOOGLE_PROJECT_ID": "project-fb2139cd-eb6c-45f9-8e1"
+      }
+    }
+  }
+}

@@ -1,0 +1,338 @@
+{% extends "base.html" %}
+
+{% block title %}Oliver Donaldson - Portfolio{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <div class="hero-image-col">
+            <div class="hero-image-wrapper">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile Photo">
+            </div>
+        </div>
+        <div class="hero-text-col">
+            <h1 class="hero-heading">
+                <span class="hero-word">Turning</span>
+                <span class="hero-word">Vision</span>
+                <span class="hero-word">Into</span>
+                <span class="hero-word">Reality</span>
+                <span class="hero-word">With</span>
+                <span class="hero-word highlight">Code</span>
+                <span class="hero-word">And</span>
+                <span class="hero-word highlight">Design.</span>
+            </h1>
+            <p class="hero-description">
+                As a skilled data scientist and analytics professional, I am dedicated to turning raw data into 
+                actionable insights. Explore my latest projects and articles, showcasing my expertise 
+                in machine learning and data visualization.
+            </p>
+            <div class="hero-cta">
+                <a href="{{ url_for('static', filename='files/Oliver Donaldson CV.pdf') }}" class="btn btn-primary" target="_blank">
+                    Resume <span class="btn-icon">&nearr;</span>
+                </a>
+                <a href="#contact" class="btn btn-outline">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hire Me rotating badge -->
+    <div class="hire-me-badge">
+        <svg viewBox="0 0 200 200" class="hire-me-text">
+            <defs>
+                <path id="circlePath" d="M 100, 100 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"/>
+            </defs>
+            <text>
+                <textPath href="#circlePath" startOffset="0%">
+                    Data Science &bull; Artificial Intelligence &bull; Student &bull; 
+                </textPath>
+            </text>
+        </svg>
+        <a href="mailto:ollie.donaldson@outlook.com" class="hire-me-center">
+            Hire<br>Me
+        </a>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+    <div class="section-container">
+        <div class="fade-in-up">
+            <h2 class="section-heading">Passion Fuels Purpose!</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <div class="about-grid">
+            <div class="about-bio fade-in-up">
+                <h3 class="about-label">Biography</h3>
+                <p>
+                    Hi, I'm <strong>Ollie</strong> — a passionate and detail-oriented Data Scientist and Analytics Professional. 
+                    With a strong background in machine learning, statistics, and data visualization, I enjoy transforming data 
+                    into actionable insights and building end-to-end analytical solutions.
+                </p>
+                <p>
+                    From predictive modeling to advanced analytics, I love solving real-world problems with data. I'm always 
+                    exploring new tools, algorithms, and challenges in the world of data science and AI.
+                </p>
+                <p>
+                    Currently, I'm enhancing my portfolio through impactful personal projects, and I'm open to exciting 
+                    opportunities where I can grow and contribute meaningfully to data-driven decision making.
+                </p>
+            </div>
+            <div class="about-image fade-in-up">
+                <img src="{{ url_for('static', filename='images/profile.jpg') }}" alt="Profile Photo">
+            </div>
+            <div class="about-stats fade-in-up">
+                <div class="stat-item">
+                    <span class="stat-number" data-target="10">0+</span>
+                    <span class="stat-label">Projects Completed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="3">0+</span>
+                    <span class="stat-label">Years Of Experience</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number" data-target="5">0+</span>
+                    <span class="stat-label">Certificates Earned</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Skills Section -->
+<section class="skills-section" id="skills">
+    <div class="section-container">
+        <div class="fade-in-up">
+            <h2 class="section-heading">Skills</h2>
+            <div class="section-line"></div>
+        </div>
+        <div class="skills-cloud fade-in-up">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Machine Learning</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">Pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Scikit-Learn</span>
+            <span class="skill-tag">Data Visualization</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">Statistics</span>
+            <span class="skill-tag">Deep Learning</span>
+            <span class="skill-tag">NLP</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Flask</span>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="projects-section" id="projects">
+    <div class="section-container">
+        <div class="fade-in-up">
+            <h2 class="section-heading">Imagination Trumps Knowledge!</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <!-- Featured Project -->
+        <div class="featured-project fade-in-up">
+            <div class="featured-project-img">
+                <a href="{{ url_for('project_detail', project_name='data-analysis-project') }}">
+                    <img src="{{ url_for('static', filename='images/project1.jpg') }}" alt="Data Analysis Project">
+                </a>
+            </div>
+            <div class="featured-project-info">
+                <span class="project-type">Featured Project</span>
+                <h3><a href="{{ url_for('project_detail', project_name='data-analysis-project') }}">Data Analysis Project</a></h3>
+                <p class="featured-project-desc">
+                    Comprehensive analysis of large datasets using Python, Pandas, and visualization libraries to extract meaningful insights. 
+                    Built interactive dashboards and automated reporting pipelines.
+                </p>
+                <div class="project-tags">
+                    <span>Python</span>
+                    <span>Pandas</span>
+                    <span>Matplotlib</span>
+                    <span>Jupyter</span>
+                </div>
+                <div class="project-links">
+                    <a href="#" target="_blank" aria-label="GitHub link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="{{ url_for('project_detail', project_name='data-analysis-project') }}" aria-label="Visit project">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            <!-- Project Card 2 -->
+            <div class="project-card">
+                <a href="{{ url_for('project_detail', project_name='machine-learning-model') }}" class="project-card-link">
+                    <div class="project-card-img">
+                        <img src="{{ url_for('static', filename='images/project2.jpg') }}" alt="Machine Learning Model">
+                    </div>
+                    <div class="project-card-body">
+                        <span class="project-type">Project</span>
+                        <h3>Machine Learning Model</h3>
+                        <p>Developed predictive models using scikit-learn and TensorFlow to solve classification and regression problems.</p>
+                        <div class="project-tags">
+                            <span>Python</span>
+                            <span>Scikit-Learn</span>
+                            <span>TensorFlow</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="project-card">
+                <a href="{{ url_for('project_detail', project_name='data-visualization-dashboard') }}" class="project-card-link">
+                    <div class="project-card-img">
+                        <img src="{{ url_for('static', filename='images/project3.jpg') }}" alt="Data Visualization Dashboard">
+                    </div>
+                    <div class="project-card-body">
+                        <span class="project-type">Project</span>
+                        <h3>Data Visualization Dashboard</h3>
+                        <p>Interactive dashboard built with Tableau/Power BI to visualize business metrics and KPIs.</p>
+                        <div class="project-tags">
+                            <span>Tableau</span>
+                            <span>Power BI</span>
+                            <span>SQL</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Project Card 4 -->
+            <div class="project-card">
+                <a href="{{ url_for('project_detail', project_name='statistical-analysis') }}" class="project-card-link">
+                    <div class="project-card-img">
+                        <img src="{{ url_for('static', filename='images/project4.jpg') }}" alt="Statistical Analysis">
+                    </div>
+                    <div class="project-card-body">
+                        <span class="project-type">Project</span>
+                        <h3>Statistical Analysis</h3>
+                        <p>Advanced statistical modeling and hypothesis testing to identify trends and patterns in complex datasets.</p>
+                        <div class="project-tags">
+                            <span>R</span>
+                            <span>Statistics</span>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Certificates Section -->
+<section class="certificates-section" id="certificates">
+    <div class="section-container">
+        <div class="fade-in-up">
+            <h2 class="section-heading">Courses & Certificates</h2>
+            <div class="section-line"></div>
+        </div>
+            
+        <div class="carousel-wrapper fade-in-up">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <!-- Certificate Card 1 -->
+                    <div class="certificate-card">
+                        <a href="{{ url_for('static', filename='files/certificate1.pdf') }}" target="_blank">
+                            <img src="{{ url_for('static', filename='images/cert1.jpg') }}" alt="Data Science Certificate">
+                            <p>Data Science Specialization</p>
+                        </a>
+                    </div>
+
+                    <!-- Certificate Card 2 -->
+                    <div class="certificate-card">
+                        <a href="{{ url_for('static', filename='files/certificate2.pdf') }}" target="_blank">
+                            <img src="{{ url_for('static', filename='images/cert2.jpg') }}" alt="Machine Learning Certificate">
+                            <p>Machine Learning Course</p>
+                        </a>
+                    </div>
+
+                    <!-- Certificate Card 3 -->
+                    <div class="certificate-card">
+                        <a href="{{ url_for('static', filename='files/certificate3.pdf') }}" target="_blank">
+                            <img src="{{ url_for('static', filename='images/cert3.jpg') }}" alt="Python Certificate">
+                            <p>Python for Data Analytics</p>
+                        </a>
+                    </div>
+
+                    <!-- Certificate Card 4 -->
+                    <div class="certificate-card">
+                        <a href="{{ url_for('static', filename='files/certificate4.pdf') }}" target="_blank">
+                            <img src="{{ url_for('static', filename='images/cert4.jpg') }}" alt="Statistics Certificate">
+                            <p>Advanced Statistics</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Activities Section -->
+<section class="activities-section" id="activities">
+    <div class="section-container">
+        <div class="fade-in-up">
+            <h2 class="section-heading">Experience & Activities</h2>
+            <div class="section-line"></div>
+        </div>
+        
+        <div class="timeline">
+            <!-- Activity 1 -->
+            <div class="timeline-item fade-in-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="activity-card">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activity1.jpg') }}" alt="Research Activity">
+                        </div>
+                        <div class="activity-text">
+                            <h3>Research & Development</h3>
+                            <p>Participated in cutting-edge research projects focusing on data science applications in real-world scenarios. Collaborated with academic institutions and industry partners to develop innovative analytical solutions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Activity 2 -->
+            <div class="timeline-item fade-in-up">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                    <div class="activity-card reverse">
+                        <div class="activity-image">
+                            <img src="{{ url_for('static', filename='images/activity2.jpg') }}" alt="Community Activity">
+                        </div>
+                        <div class="activity-text">
+                            <h3>Community Engagement</h3>
+                            <p>Actively involved in data science communities, organizing workshops and meetups to share knowledge and learn from fellow professionals. Regular contributor to open-source projects and technical blogs.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact-section" id="contact">
+    <div class="section-container">
+        <div class="fade-in-up">
+            <h2 class="section-heading">Get In Touch</h2>
+            <div class="section-line"></div>
+            <p class="contact-text">
+                I'm currently looking for new opportunities. Whether you have a question 
+                or just want to say hi, feel free to reach out!
+            </p>
+            <a href="mailto:ollie.donaldson@outlook.com" class="btn btn-primary btn-lg">Say Hello</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

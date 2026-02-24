@@ -1,0 +1,292 @@
+{% extends "base.html" %}
+
+{% block title %}Data Analysis Project - Your Portfolio{% endblock %}
+
+{% block content %}
+<style>
+    .project-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 24px;
+    }
+    .project-page h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--heading-color);
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .project-page h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--heading-color);
+        margin-top: 48px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--accent);
+        display: inline-block;
+    }
+    .project-page h3 {
+        color: var(--heading-color);
+    }
+    .project-page p, .project-page li {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        font-size: 0.98rem;
+    }
+    .project-page ul, .project-page ol {
+        padding-left: 24px;
+        margin: 12px 0;
+    }
+    .project-page li {
+        margin-bottom: 8px;
+    }
+    .project-page section {
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    .author-info {
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+    }
+    .author-info strong {
+        color: var(--text-secondary);
+    }
+    .image-container {
+        text-align: center;
+        margin: 30px 0;
+    }
+    .image-container img {
+        width: 100%;
+        max-width: 700px;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 30px var(--shadow);
+        border: 1px solid var(--border);
+    }
+    .image-container .caption {
+        font-style: italic;
+        color: var(--text-muted);
+        margin-top: 10px;
+        font-size: 0.88rem;
+    }
+    .table-container {
+        overflow-x: auto;
+        margin: 24px 0;
+        padding: 0;
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-main);
+        font-size: 0.92rem;
+    }
+    .styled-table thead tr {
+        background: var(--accent);
+        color: var(--bg-primary);
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+    }
+    .styled-table tbody tr {
+        background: var(--bg-card);
+        color: var(--text-secondary);
+    }
+    .styled-table tbody tr:nth-child(even) {
+        background: var(--bg-secondary);
+    }
+    .styled-table tbody tr:hover {
+        background: var(--tag-bg);
+    }
+    .styled-table td strong {
+        color: var(--text-primary);
+    }
+    .styled-table caption {
+        caption-side: top;
+        text-align: center;
+        font-weight: 700;
+        color: var(--text-primary);
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    .project-page pre {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 20px;
+        overflow-x: auto;
+        font-size: 0.88rem;
+        line-height: 1.6;
+    }
+    .project-page code {
+        color: var(--accent);
+        font-family: 'Consolas', 'Monaco', monospace;
+    }
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 32px;
+        font-size: 0.95rem;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="project-page">
+    <a href="{{ url_for('home') }}#projects" class="back-link">&larr; Back to Projects</a>
+
+    <h1>Data Analysis Project</h1>
+
+    <div class="author-info">
+        <p><strong>Author:</strong> Your Name &nbsp;|&nbsp;
+        <strong>Date:</strong> January 2024 &nbsp;|&nbsp;
+        <strong>Tools:</strong> Python, Pandas, Matplotlib, Seaborn</p>
+    </div>
+
+    <!-- Project Overview -->
+    <section>
+        <h2>Project Overview</h2>
+        <p style="text-align: justify;">
+            This project demonstrates comprehensive data analysis techniques applied to a real-world dataset. 
+            Using Python and various data science libraries, we explore patterns, trends, and insights 
+            hidden within the data to answer key business questions and provide actionable recommendations.
+        </p>
+    </section>
+
+    <!-- Methodology -->
+    <section>
+        <h2>Methodology</h2>
+        <p style="text-align: justify;">
+            The analysis follows a systematic approach including data cleaning, exploratory data analysis (EDA), 
+            statistical testing, and visualization. Key steps include:
+        </p>
+        <ul>
+            <li>Data collection and initial assessment</li>
+            <li>Data cleaning and preprocessing</li>
+            <li>Exploratory data analysis</li>
+            <li>Statistical analysis and hypothesis testing</li>
+            <li>Data visualization and reporting</li>
+        </ul>
+    </section>
+
+    <!-- Results -->
+    <section>
+        <h2>Key Findings</h2>
+        <div class="image-container">
+            <img src="{{ url_for('static', filename='images/analysis_chart1.png') }}" alt="Analysis Results Chart">
+            <p class="caption">Figure 1: Distribution of key variables showing clear patterns in the dataset</p>
+        </div>
+        
+        <p style="text-align: justify;">
+            The analysis revealed several important insights about the dataset. Key findings include 
+            significant correlations between variables, seasonal trends, and anomalies that require 
+            further investigation.
+        </p>
+
+        <!-- Results Table -->
+        <div class="table-container">
+            <table class="styled-table">
+                <caption>Table 1: Summary Statistics</caption>
+                <thead>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sample Size</strong></td>
+                        <td>10,000</td>
+                        <td>Total number of observations</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mean</strong></td>
+                        <td>42.5</td>
+                        <td>Average value of target variable</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Standard Deviation</strong></td>
+                        <td>15.2</td>
+                        <td>Measure of data spread</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Correlation</strong></td>
+                        <td>0.78</td>
+                        <td>Strength of relationship between variables</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Code Snippet -->
+    <section>
+        <h2>Implementation</h2>
+        <p style="text-align: justify;">
+            The analysis was implemented in Python using the following key libraries and techniques:
+        </p>
+        <pre><code># Data Analysis Implementation
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+from scipy import stats
+
+# Load and explore data
+df = pd.read_csv('dataset.csv')
+print(df.describe())
+
+# Visualization
+plt.figure(figsize=(10, 6))
+sns.histplot(df['target_variable'], bins=30)
+plt.title('Distribution of Target Variable')
+plt.show()
+
+# Statistical analysis
+correlation = df.corr()
+print(f"Correlation coefficient: {correlation}")
+
+# Hypothesis testing
+statistic, p_value = stats.ttest_ind(group1, group2)
+print(f"P-value: {p_value}")</code></pre>
+    </section>
+
+    <!-- Conclusions -->
+    <section>
+        <h2>Conclusions & Recommendations</h2>
+        <p style="text-align: justify;">
+            Based on the comprehensive analysis, we can conclude that the data shows clear patterns 
+            that can be leveraged for business decision-making. The recommendations include:
+        </p>
+        <ul>
+            <li>Focus on high-correlation variables for predictive modeling</li>
+            <li>Investigate seasonal patterns for resource allocation</li>
+            <li>Implement data quality checks for anomaly detection</li>
+            <li>Consider additional data sources to improve analysis depth</li>
+        </ul>
+    </section>
+
+    <!-- References -->
+    <section>
+        <h2>References</h2>
+        <ol>
+            <li>McKinney, W. (2017). Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython. O'Reilly Media.</li>
+            <li>Wickham, H., & Grolemund, G. (2017). R for Data Science: Import, Tidy, Transform, Visualize, and Model Data. O'Reilly Media.</li>
+            <li>VanderPlas, J. (2016). Python Data Science Handbook: Essential Tools for Working with Data. O'Reilly Media.</li>
+        </ol>
+    </section>
+</div>
+{% endblock %}
