@@ -27,7 +27,7 @@ if __name__ == '__main__':
     # Create placeholder static files if they don't exist yet
     # (prevents 404 errors during freeze)
     placeholders = {
-        'static/files/Your_CV.pdf': b'%PDF-1.4 placeholder',
+        'static/files/Oliver Donaldson CV.pdf': b'%PDF-1.4 placeholder',
         'static/files/certificate1.pdf': b'%PDF-1.4 placeholder',
         'static/files/certificate2.pdf': b'%PDF-1.4 placeholder',
         'static/files/certificate3.pdf': b'%PDF-1.4 placeholder',
