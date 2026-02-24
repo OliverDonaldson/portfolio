@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Learning Model - Your Portfolio</title>
+    <title>Machine Learning Model - Oliver Donaldson</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -175,7 +175,7 @@
     <h1>Machine Learning Model</h1>
 
     <div class="author-info">
-        <p><strong>Author:</strong> Your Name &nbsp;|&nbsp;
+        <p><strong>Author:</strong> Oliver Donaldson &nbsp;|&nbsp;
         <strong>Date:</strong> February 2024 &nbsp;|&nbsp;
         <strong>Tools:</strong> Python, Scikit-Learn, TensorFlow, Keras</p>
     </div>

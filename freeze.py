@@ -70,11 +70,4 @@ if __name__ == '__main__':
     
     # Freeze the Flask app into static files
     freezer.freeze()
-    
-    print("\nPortfolio has been frozen into static files!")
-    print("You can now deploy the 'docs' folder to GitHub Pages.")
-    print("\nTo deploy to GitHub Pages:")
-    print("1. Commit all changes to your repository")
-    print("2. Push to GitHub")
-    print("3. In repository settings, enable GitHub Pages and set source to 'docs' folder")
-    print("4. Your portfolio will be available at https://yourusername.github.io/repository-name/")
+    print("\n✅ Portfolio frozen to docs/ — ready to push to GitHub Pages")

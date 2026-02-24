@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analysis Project - Your Portfolio</title>
+    <title>Data Analysis Project - Oliver Donaldson</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -224,7 +224,7 @@
     <h1>Data Analysis Project</h1>
 
     <div class="author-info">
-        <p><strong>Author:</strong> Your Name &nbsp;|&nbsp;
+        <p><strong>Author:</strong> Oliver Donaldson &nbsp;|&nbsp;
         <strong>Date:</strong> January 2024 &nbsp;|&nbsp;
         <strong>Tools:</strong> Python, Pandas, Matplotlib, Seaborn</p>
     </div>

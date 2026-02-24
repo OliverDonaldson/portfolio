@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Visualization Dashboard - Your Portfolio</title>
+    <title>Data Visualization Dashboard - Oliver Donaldson</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +97,7 @@
     <h1>Data Visualization Dashboard</h1>
 
     <div class="author-info">
-        <p><strong>Author:</strong> Your Name &nbsp;|&nbsp;
+        <p><strong>Author:</strong> Oliver Donaldson &nbsp;|&nbsp;
         <strong>Date:</strong> Coming Soon &nbsp;|&nbsp;
         <strong>Tools:</strong> Tableau, Power BI, SQL</p>
     </div>
