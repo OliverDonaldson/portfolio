@@ -1,0 +1,358 @@
+{% extends "base.html" %}
+
+{% block title %}Loan Closure Automation - Oliver Donaldson{% endblock %}
+
+{% block content %}
+<style>
+    .project-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 24px;
+    }
+    .project-page h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--heading-color);
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .project-page h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--heading-color);
+        margin-top: 48px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--accent);
+        display: inline-block;
+    }
+    .project-page h3 {
+        color: var(--heading-color);
+    }
+    .project-page p, .project-page li {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        font-size: 0.98rem;
+    }
+    .project-page ul, .project-page ol {
+        padding-left: 24px;
+        margin: 12px 0;
+    }
+    .project-page li {
+        margin-bottom: 8px;
+    }
+    .project-page section {
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    .author-info {
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 40px;
+    }
+    .author-info strong {
+        color: var(--text-secondary);
+    }
+    .image-container {
+        text-align: center;
+        margin: 30px 0;
+    }
+    .image-container img {
+        width: 100%;
+        max-width: 700px;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 30px var(--shadow);
+        border: 1px solid var(--border);
+    }
+    .image-container .caption {
+        font-style: italic;
+        color: var(--text-muted);
+        margin-top: 10px;
+        font-size: 0.88rem;
+    }
+    .highlight-box {
+        background: var(--bg-card);
+        border-left: 4px solid var(--accent);
+        border-radius: var(--radius);
+        padding: 20px 24px;
+        margin: 24px 0;
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+    .highlight-box p {
+        margin: 0;
+    }
+    .table-container {
+        overflow-x: auto;
+        margin: 24px 0;
+        padding: 0;
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-main);
+        font-size: 0.92rem;
+    }
+    .styled-table thead tr {
+        background: var(--accent);
+        color: var(--bg-primary);
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+    }
+    .styled-table tbody tr {
+        background: var(--bg-card);
+        color: var(--text-secondary);
+    }
+    .styled-table tbody tr:nth-child(even) {
+        background: var(--bg-secondary);
+    }
+    .styled-table tbody tr:hover {
+        background: var(--tag-bg);
+    }
+    .styled-table td strong {
+        color: var(--text-primary);
+    }
+    .styled-table caption {
+        caption-side: top;
+        text-align: center;
+        font-weight: 700;
+        color: var(--text-primary);
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 32px;
+        font-size: 0.95rem;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="project-page">
+    <a href="{{ url_for('home') }}#projects" class="back-link">&larr; Back to Projects</a>
+
+    <h1>Loan closure confirmation Automation</h1>
+
+    <div class="author-info">
+        <p><strong>Role:</strong> AI &amp; Analytics Intern &nbsp;|&nbsp;
+        <strong>Company:</strong> Harmoney &nbsp;|&nbsp;
+        <strong>Date:</strong> 2025-2026 Summer Internship &nbsp;|&nbsp;
+        <strong>Stack:</strong> TypeScript, React, Kafka, MongoDB, SendGrid, Contentful</p>
+    </div>
+
+    <!-- Project Overview -->
+    <section>
+        <h2>Project Overview</h2>
+        <p style="text-align: justify;">
+            During my internship at Harmoney, a high-growth FinTech lender operating in New Zealand and Australia, 
+            I was tasked with engineering an end-to-end automation for the Obligations Met Letter - Loan closure confirmation workflow. 
+            The existing process was entirely manual, with operations staff generating closure letters one by one 
+            through an admin portal and emailing them to customers individually, handling 70–80 letters per month.
+        </p>
+        <p style="text-align: justify;">
+            My project replaced this with a fully automated, event-driven system that detects when a loan 
+            reaches a zero balance, waits an 8-standard-day buffer for any payment reversals to clear, validates 
+            eligibility, generates a personalised PDF confirmation letter, and emails it directly to the customer 
+            — all without any manual intervention. This would not only eliminate a significant operational burden but also
+            improve the customer experience by providing a guaranteed delivery timeline and reducing the risk of errors.
+        </p>
+    </section>
+
+    <!-- The Problem -->
+    <section>
+        <h2>The Problem</h2>
+        <p style="text-align: justify;">
+            A manual workflow could create friction at multiple levels:
+        </p>
+        <ul>
+            <li><strong>Customer uncertainty:</strong> After making their final payment, customers can be left in limbo, 
+                often needing to chase support for proof of loan closure to provide to other financial institutions.</li>
+            <li><strong>Operational burden:</strong> The operations team spent significant time each month manually generating 
+                and sending individual closure letters.</li>
+            <li><strong>Compliance risk:</strong> Manual processing could introduce the risk of inconsistent details, missing dates, 
+                incorrect statuses, or delays, which could cause issues with external banks and credit reporting agencies.</li>
+        </ul>
+    </section>
+
+    <!-- Solution Architecture -->
+    <section>
+        <h2>Solution Architecture</h2>
+        <p style="text-align: justify;">
+            The automation I built is event-driven, listening in real time for loan state changes and 
+            responding with a carefully orchestrated pipeline:
+        </p>
+
+        <h3>1. Event Monitoring</h3>
+        <p style="text-align: justify;">
+            The system listens for real-time Kafka events — specifically <strong>PAID_OFF</strong> and 
+            <strong>CANCELLED</strong> loan states. These are the only two closure types the automation handles. 
+            When a qualifying event is detected, the pipeline is triggered.
+        </p>
+
+        <h3>2. Smart Eligibility Filtering</h3>
+        <p style="text-align: justify;">
+            Not every closed loan should receive an automated letter. The system automatically filters out 
+            complex cases — such as debt-sold or consolidated loans — to ensure that only straightforward, 
+            verified closures are processed. This keeps accuracy at 100%.
+        </p>
+
+        <h3>3. The 8-Day Safety Buffer</h3>
+        <div class="highlight-box">
+            <p>
+                This was the most critical design decision. In the real world, a "zero balance" doesn't always mean 
+                the money has truly settled. Direct debits and card payments can bounce days after they appear to clear. 
+                If the system sent a confirmation letter immediately, a customer could take that letter to another bank 
+                to secure a mortgage — only for the original loan to reopen when the payment is dishonoured.
+            </p>
+        </div>
+        <p style="text-align: justify;">
+            To mitigate this risk, the automation enforces an 8-standard-day buffer period. But it doesn't just wait — 
+            it performs a <strong>final validation step</strong> immediately before sending, re-checking the balance 
+            at the last second. If the balance is anything other than zero, the process aborts and logs the event 
+            for the operations team.
+        </p>
+
+        <h3>4. PDF Generation & Delivery</h3>
+        <p style="text-align: justify;">
+            Once validated, the system generates a personalised PDF letter with state-dependent content. 
+            For paid-off loans, the letter confirms the loan has been paid in full and all obligations 
+            under the contract are met. For cancelled loans, it confirms the loan has been cancelled. 
+            Each letter includes the customer's details, loan reference, outstanding balance, final 
+            payoff date, and closure status.
+        </p>
+        <p style="text-align: justify;">
+            The letter also includes a credit reporting statement — for paid-off loans, it confirms 
+            credit agencies will be notified the loan is closed and paid in full; for cancelled loans, 
+            it notes that credit agencies will not show a record. The system automatically identifies 
+            and emails both primary and joint borrowers.
+        </p>
+
+        <h3>5. Self-Service Customer Download</h3>
+        <p style="text-align: justify;">
+            Beyond the automated email, I also built a self-service download feature within the customer portal, 
+            allowing borrowers to access their closure letter at any time — reducing inbound support requests.
+        </p>
+    </section>
+
+    <!-- Risk Mitigation -->
+    <section>
+        <h2>Risk Mitigation</h2>
+        <p style="text-align: justify;">
+            The "clawback" scenario — where a payment is reversed after a closure letter has already been sent — 
+            was the primary risk this project needed to address. The consequences span three areas:
+        </p>
+        <ul>
+            <li><strong>Legal liability:</strong> A closure letter is a formal financial statement. If a customer 
+                uses it to secure lending elsewhere, then the loan reopens, the company has effectively issued 
+                a false document.</li>
+            <li><strong>Reputational damage:</strong> Telling someone they're debt-free and then reversing that 
+                is a terrible customer experience that erodes trust.</li>
+            <li><strong>Credit reporting accuracy:</strong> Premature closure notifications create inconsistencies 
+                with credit agencies and complications for compliance and audit.</li>
+        </ul>
+        <p style="text-align: justify;">
+            The 8-day buffer combined with the final balance re-check was the solution — balancing the customer's 
+            desire for speed with the business's need for absolute finality.
+        </p>
+    </section>
+
+    <!-- Observability & Audit -->
+    <section>
+        <h2>Observability &amp; Audit Trail</h2>
+        <p style="text-align: justify;">
+            For a financial system, auditability is non-negotiable. The automation tracks and persists 
+            key events throughout the pipeline:
+        </p>
+        <div class="table-container">
+            <table class="styled-table">
+                <caption>Key Performance Events</caption>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Letter Sent</strong></td>
+                        <td>Recorded each time the system successfully emails a closure confirmation (including joint borrowers)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Generation Failed</strong></td>
+                        <td>Triggered if PDF generation or email delivery encounters an error</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Letter Aborted</strong></td>
+                        <td>Recorded if a loan's status changed or a balance reappeared during the buffer period</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Download</strong></td>
+                        <td>Tracks self-service downloads from the customer portal (each download logged separately)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Letter Bounce Back</strong></td>
+                        <td>Tracks if the email delivery fails due to an invalid email address or technical issue (Phase 3)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="text-align: justify;">
+            Events are persisted via the outbox pattern and published to a Kafka topic for downstream 
+            consumption. The email send is idempotent — the system checks for an existing sent event 
+            before triggering, ensuring each customer only receives the letter once. PDF downloads, 
+            however, can be performed multiple times with each download recorded as a separate event 
+            for a complete audit trail.
+        </p>
+        <p style="text-align: justify;">
+            Within the admin portal, every send is logged with a timestamp and marked as a system-generated 
+            send to distinguish it from legacy manual sends. An archived copy of the exact PDF is stored 
+            for future support and compliance reference. Eligibility logs also record why specific loans 
+            were skipped for troubleshooting.
+        </p>
+    </section>
+
+    <!-- Impact -->
+    <section>
+        <h2>Impact</h2>
+        <p style="text-align: justify;">
+            This project replaced a manual, error-prone workflow with a streamlined, event-driven system. The key outcomes:
+        </p>
+        <ul>
+            <li>Eliminated 70–80 manual letter sends per month from the operations workload</li>
+            <li>Reduced customer wait time from days (or weeks of chasing) to a guaranteed 8-day automated delivery</li>
+            <li>Ensured 100% accuracy through smart eligibility filtering and final balance validation</li>
+            <li>Introduced a full audit trail for legal and compliance requirements</li>
+            <li>Added self-service capability, reducing inbound support volume</li>
+        </ul>
+    </section>
+
+    <!-- Reflection -->
+    <section>
+        <h2>Reflection</h2>
+        <p style="text-align: justify;">
+            This was the capstone project of my internship, and the perfect way to apply everything I'd learned 
+            over the summer — from event-driven architecture and database design to thinking carefully about 
+            real-world edge cases like payment reversals and legal implications. Working on a production-level system 
+            that directly impacted operations and customer experience was both challenging and incredibly rewarding.
+        </p>
+        <p style="text-align: justify;">
+            What I valued most wasn't just the technical growth, but the trust and ownership I was given as an intern 
+            to design and build this end-to-end.
+        </p>
+    </section>
+</div>
+{% endblock %}

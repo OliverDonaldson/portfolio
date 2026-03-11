@@ -70,4 +70,4 @@ if __name__ == '__main__':
     
     # Freeze the Flask app into static files
     freezer.freeze()
-    print("\n✅ Portfolio frozen to docs/ — ready to push to GitHub Pages")
+    print("\n✅ Portfolio frozen to docs/")

@@ -66,16 +66,16 @@
             <div class="about-bio fade-in-up">
                 <h3 class="about-label">Biography</h3>
                 <p>
-                    Hi, I'm <strong>Ollie</strong> — a passionate and detail-oriented Data Scientist and Analytics Professional. 
-                    With a strong background in machine learning, statistics, and data visualization, I enjoy transforming data 
-                    into actionable insights and building end-to-end analytical solutions.
+                    Hi, I'm <strong>Ollie</strong> — a third-year Data Science student at Victoria University of Wellington 
+                    with a foundation in Legal Studies. I enjoy transforming raw data into actionable insights 
+                    and building end-to-end analytical solutions, with a keen eye for data integrity and responsible AI.
                 </p>
                 <p>
-                    From predictive modeling to advanced analytics, I love solving real-world problems with data. I'm always 
-                    exploring new tools, algorithms, and challenges in the world of data science and AI.
+                    From statistical modelling to interactive visualisations, I love solving real-world problems with data. 
+                    I'm always exploring new tools, algorithms, and challenges in the world of data science and AI.
                 </p>
                 <p>
-                    Currently, I'm enhancing my portfolio through impactful personal projects, and I'm open to exciting 
+                    I bring a mix of technical capability and people skills, and I'm open to exciting 
                     opportunities where I can grow and contribute meaningfully to data-driven decision making.
                 </p>
             </div>
@@ -84,19 +84,19 @@
             </div>
             <div class="about-stats fade-in-up">
                 <div class="stat-item">
-                    <span class="stat-number" data-target="6">0</span>
+                    <span class="stat-number" data-target="7">0</span>
                     <span class="stat-label">Projects Completed</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-target="4">0</span>
-                    <span class="stat-label">Months Of Experience</span>
+                    <span class="stat-label">Months Of Professional Experience</span>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number" data-target="5">0</span>
                     <span class="stat-label">Certificates Earned</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number" data-target="123">0+</span>
+                    <span class="stat-number" data-target="128">0+</span>
                     <span class="stat-label">Cups of Coffee Drank</span>
                 </div>
             </div>
@@ -159,28 +159,26 @@
         <!-- Featured Project -->
         <div class="featured-project fade-in-up">
             <div class="featured-project-img">
-                <a href="{{ url_for('project_detail', project_name='data-analysis-project') }}">
-                    <img src="{{ url_for('static', filename='images/project1.jpg') }}" alt="Data Analysis Project">
+                <a href="{{ url_for('project_detail', project_name='loan-closure-automation') }}">
+                    <img src="{{ url_for('static', filename='images/project1.jpg') }}" alt="Loan Closure Automation">
                 </a>
             </div>
             <div class="featured-project-info">
-                <span class="project-type">Featured Project</span>
-                <h3><a href="{{ url_for('project_detail', project_name='data-analysis-project') }}">Data Analysis Project</a></h3>
+                <span class="project-type">Featured Project — Internship</span>
+                <h3><a href="{{ url_for('project_detail', project_name='loan-closure-automation') }}">Loan Closure Automation</a></h3>
                 <p class="featured-project-desc">
-                    Comprehensive analysis of large datasets using Python, Pandas, and visualization libraries to extract meaningful insights. 
-                    Built interactive dashboards and automated reporting pipelines.
+                    Engineered an end-to-end event-driven automation during my internship at Harmoney, replacing a manual loan closure 
+                    workflow with a system that handles eligibility logic, PDF generation, and automated customer delivery.
                 </p>
                 <div class="project-tags">
-                    <span>Python</span>
-                    <span>Pandas</span>
-                    <span>Matplotlib</span>
-                    <span>Jupyter</span>
+                    <span>TypeScript</span>
+                    <span>Kafka</span>
+                    <span>MongoDB</span>
+                    <span>SendGrid</span>
+                    <span>Contentful</span>
                 </div>
                 <div class="project-links">
-                    <a href="#" target="_blank" aria-label="GitHub link">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                    </a>
-                    <a href="{{ url_for('project_detail', project_name='data-analysis-project') }}" aria-label="Visit project">
+                    <a href="{{ url_for('project_detail', project_name='loan-closure-automation') }}" aria-label="Visit project">
                         <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
                     </a>
                 </div>
@@ -191,18 +189,24 @@
         <div class="projects-grid">
             <!-- Project Card 2 -->
             <div class="project-card">
-                <a href="{{ url_for('project_detail', project_name='machine-learning-model') }}" class="project-card-link">
+                <a href="{{ url_for('project_detail', project_name='study-tracker-widget') }}" class="project-card-link">
                     <div class="project-card-img">
-                        <img src="{{ url_for('static', filename='images/project2.jpg') }}" alt="Machine Learning Model">
+                        <img src="{{ url_for('static', filename='images/project2.jpg') }}" alt="Study Tracker Widget">
                     </div>
                     <div class="project-card-body">
                         <span class="project-type">Project</span>
-                        <h3>Machine Learning Model</h3>
-                        <p>Developed predictive models using scikit-learn and TensorFlow to solve classification and regression problems.</p>
+                        <h3>Study Tracker Widget</h3>
+                        <p>An iOS home screen widget with gamified XP, levelling, and progress tracking to organise university study tasks.</p>
                         <div class="project-tags">
-                            <span>Python</span>
-                            <span>Scikit-Learn</span>
-                            <span>TensorFlow</span>
+                            <span>Übersicht</span>
+                            <span>React JSX</span>
+                            <span>SVG</span>
+                            <span>CSS-in-JS</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/OliverDonaldson/Widget" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" onclick="event.stopPropagation();">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </a>
                         </div>
                     </div>
                 </a>
@@ -212,16 +216,25 @@
             <div class="project-card">
                 <a href="{{ url_for('project_detail', project_name='data-visualization-dashboard') }}" class="project-card-link">
                     <div class="project-card-img">
-                        <img src="{{ url_for('static', filename='images/project3.jpg') }}" alt="Data Visualization Dashboard">
+                        <img src="{{ url_for('static', filename='images/project3.jpg') }}" alt="F.R.I.D.A.Y Financial Assistant">
                     </div>
                     <div class="project-card-body">
                         <span class="project-type">Project</span>
-                        <h3>Data Visualization Dashboard</h3>
-                        <p>Interactive dashboard built with Tableau/Power BI to visualize business metrics and KPIs.</p>
+                        <h3>F.R.I.D.A.Y</h3>
+                        <p>My CS50x final project: a full-stack financial guidance app with authentication, savings tools, and a built-in voice assistant.</p>
                         <div class="project-tags">
-                            <span>Tableau</span>
-                            <span>Power BI</span>
-                            <span>SQL</span>
+                            <span>Python</span>
+                            <span>HTML/CSS</span>
+                            <span>SQLite</span>
+                            <span>Bootstrap</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/OliverDonaldson/F.R.I.D.A.Y.git" target="_blank" rel="noopener noreferrer" aria-label="GitHub Repository" onclick="event.stopPropagation();">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+                            </a>
+                            <a href="https://www.youtube.com/watch?v=sDPMtDm68uI" target="_blank" rel="noopener noreferrer" aria-label="YouTube Demo" onclick="event.stopPropagation();">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a2.998 2.998 0 0 0-2.11-2.12C19.505 3.5 12 3.5 12 3.5s-7.505 0-9.388.566a2.998 2.998 0 0 0-2.11 2.12A31.59 31.59 0 0 0 0 12a31.59 31.59 0 0 0 .502 5.814 2.998 2.998 0 0 0 2.11 2.12C4.495 20.5 12 20.5 12 20.5s7.505 0 9.388-.566a2.998 2.998 0 0 0 2.11-2.12A31.59 31.59 0 0 0 24 12a31.59 31.59 0 0 0-.502-5.814zM9.75 15.568V8.432L16.02 12 9.75 15.568z"/></svg>
+                            </a>
                         </div>
                     </div>
                 </a>
@@ -231,16 +244,16 @@
             <div class="project-card">
                 <a href="{{ url_for('project_detail', project_name='statistical-analysis') }}" class="project-card-link">
                     <div class="project-card-img">
-                        <img src="{{ url_for('static', filename='images/project4.jpg') }}" alt="Statistical Analysis">
+                        <img src="{{ url_for('static', filename='images/project4.jpg') }}" alt="Ideas In Progress">
                     </div>
                     <div class="project-card-body">
-                        <span class="project-type">Project</span>
-                        <h3>Statistical Analysis</h3>
-                        <p>Advanced statistical modeling and hypothesis testing to identify trends and patterns in complex datasets.</p>
+                        <span class="project-type">Coming Soon</span>
+                        <h3>Ideas In Progress</h3>
+                        <p>I am currently building and testing new project ideas. This slot will be updated with my next full write-up soon.</p>
                         <div class="project-tags">
-                            <span>R</span>
-                            <span>Statistics</span>
-                            <span>Python</span>
+                            <span>In Progress</span>
+                            <span>Researching</span>
+                            <span>More Coffee Needed!</span>
                         </div>
                     </div>
                 </a>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Machine Learning Model - Oliver Donaldson</title>
+    <title>Study Tracker Widget - Oliver Donaldson</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -172,60 +172,69 @@
 <div class="project-page">
     <a href="../index.html#projects" class="back-link">&larr; Back to Projects</a>
 
-    <h1>Machine Learning Model</h1>
+    <h1>Study Tracker Widget</h1>
 
     <div class="author-info">
         <p><strong>Author:</strong> Oliver Donaldson &nbsp;|&nbsp;
-        <strong>Date:</strong> February 2024 &nbsp;|&nbsp;
-        <strong>Tools:</strong> Python, Scikit-Learn, TensorFlow, Keras</p>
+        <strong>Date:</strong> March 2026 &nbsp;|&nbsp;
+        <strong>Platform:</strong> iOS (Swift / SwiftUI)</p>
+    </div>
+
+    <div class="image-container">
+        <img src="../static/images/project2.jpg" alt="Study Tracker Widget">
+        <p class="caption">The Study Tracker widget on the iOS home screen</p>
     </div>
 
     <section>
         <h2>Project Overview</h2>
         <p style="text-align: justify;">
-            This project focuses on developing predictive machine learning models to solve classification 
-            and regression problems. Using scikit-learn and TensorFlow, various algorithms were trained, 
-            evaluated, and optimized to achieve high accuracy on real-world datasets.
+            Study Tracker is an iOS widget I built over two weeks to help organise my university study tasks.
+            It lives on the home screen as a compact, glanceable widget that shows course-by-course
+            progress, daily task lists, and a gamified XP &amp; levelling system to keep motivation high
+            throughout the trimester.
         </p>
     </section>
 
     <section>
-        <h2>Methodology</h2>
+        <h2>Key Features</h2>
         <ul>
-            <li>Data preprocessing and feature engineering</li>
-            <li>Model selection and hyperparameter tuning</li>
-            <li>Cross-validation and performance evaluation</li>
-            <li>Model interpretation and feature importance analysis</li>
-            <li>Deployment-ready pipeline creation</li>
+            <li><strong>Course-based task management</strong> — organise tasks under each course (e.g. DATA 303, DATA 305, STAT 292) with lectures, tutorials, and assignments</li>
+            <li><strong>Progress tracking</strong> — per-course and overall completion percentages with visual progress bars</li>
+            <li><strong>XP &amp; levelling system</strong> — earn experience points for completing tasks, level up, and unlock badges like "First Task" and "All Complete"</li>
+            <li><strong>Growing plant visualisation</strong> — a virtual plant that grows as you complete more tasks, providing a satisfying visual reward</li>
+            <li><strong>Today Tasks view</strong> — a focused daily summary showing only what needs to be done today</li>
+            <li><strong>Home screen widget</strong> — quick at-a-glance progress without opening the app</li>
         </ul>
     </section>
 
     <section>
-        <h2>Implementation</h2>
-        <pre><code># Machine Learning Pipeline
-from sklearn.model_selection import train_test_split, GridSearchCV
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import classification_report
-import pandas as pd
-
-# Load and split data
-df = pd.read_csv('dataset.csv')
-X = df.drop('target', axis=1)
-y = df['target']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
-
-# Train and evaluate
-model = RandomForestClassifier(n_estimators=100)
-model.fit(X_train, y_train)
-predictions = model.predict(X_test)
-print(classification_report(y_test, predictions))</code></pre>
+        <h2>Technical Details</h2>
+        <ul>
+            <li>Built with <strong>Swift</strong> and <strong>SwiftUI</strong> for a native iOS experience</li>
+            <li>Uses <strong>WidgetKit</strong> to render an interactive home screen widget</li>
+            <li>Local data persistence for task state and progress</li>
+            <li>Responsive layout that adapts to different widget sizes</li>
+            <li>Custom animations for the plant growth and XP progression</li>
+        </ul>
     </section>
 
     <section>
-        <h2>Results</h2>
+        <h2>Motivation</h2>
         <p style="text-align: justify;">
-            The optimized model achieved strong performance metrics across multiple evaluation criteria,
-            demonstrating the effectiveness of the chosen approach for this problem domain.
+            Juggling multiple courses with lectures, tutorials, and assignments can be overwhelming.
+            I wanted a tool that lives right on my home screen — no app-switching required — to
+            give me instant visibility into what's done, what's due, and how I'm tracking overall.
+            The gamification elements (XP, levels, badges, and the growing plant) turn routine
+            task-checking into something genuinely rewarding.
+        </p>
+    </section>
+
+    <section>
+        <h2>Links</h2>
+        <p>
+            <a href="https://github.com/OliverDonaldson/Widget" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 600;">
+                View on GitHub &nearr;
+            </a>
         </p>
     </section>
 </div>
