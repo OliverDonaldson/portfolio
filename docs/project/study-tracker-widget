@@ -130,8 +130,11 @@
         margin: 30px 0;
     }
     .image-container img {
-        width: 100%;
-        max-width: 700px;
+        width: auto;
+        max-width: min(100%, 700px);
+        height: auto;
+        display: block;
+        margin: 0 auto;
         border-radius: var(--radius);
         box-shadow: 0 8px 30px var(--shadow);
         border: 1px solid var(--border);
@@ -177,55 +180,69 @@
     <div class="author-info">
         <p><strong>Author:</strong> Oliver Donaldson &nbsp;|&nbsp;
         <strong>Date:</strong> March 2026 &nbsp;|&nbsp;
-        <strong>Platform:</strong> iOS (Swift / SwiftUI)</p>
+        <strong>Platform:</strong> macOS (Übersicht / React JSX)</p>
     </div>
 
     <div class="image-container">
-        <img src="../static/images/project2.jpg" alt="Study Tracker Widget">
+        <img src="../static/images/study-tracker-detail.png" alt="Study Tracker Widget">
         <p class="caption">The Study Tracker widget on the iOS home screen</p>
     </div>
 
     <section>
         <h2>Project Overview</h2>
         <p style="text-align: justify;">
-            Study Tracker is an iOS widget I built over two weeks to help organise my university study tasks.
-            It lives on the home screen as a compact, glanceable widget that shows course-by-course
-            progress, daily task lists, and a gamified XP &amp; levelling system to keep motivation high
-            throughout the trimester.
+            Study Tracker is an iOS widget I built to help organise my university study tasks.
+            It is a desktop widget that provides a compact, glanceable view of course-by-course
+            progress, daily task lists, and a gamified XP &amp; levelling system to keep motivation high. This widget 
+            is interactive, allowing me to check off tasks as I complete them, and it visually represents my progress with a growing plant that flourishes as I get more done.
+            I can add/remove courses and tasks as needed, and the widget updates in real-time to reflect my current status.
+            (The tasks shown are demo data for demonstration purposes, I have done them, I swear!)
         </p>
     </section>
 
     <section>
         <h2>Key Features</h2>
         <ul>
-            <li><strong>Course-based task management</strong> — organise tasks under each course (e.g. DATA 303, DATA 305, STAT 292) with lectures, tutorials, and assignments</li>
+            <li><strong>Course-based task management</strong> — organise tasks under each course (e.g. DATA 303, DATA 305, STAT 292) with lectures, tutorials, and assignments etc.</li>
             <li><strong>Progress tracking</strong> — per-course and overall completion percentages with visual progress bars</li>
             <li><strong>XP &amp; levelling system</strong> — earn experience points for completing tasks, level up, and unlock badges like "First Task" and "All Complete"</li>
             <li><strong>Growing plant visualisation</strong> — a virtual plant that grows as you complete more tasks, providing a satisfying visual reward</li>
-            <li><strong>Today Tasks view</strong> — a focused daily summary showing only what needs to be done today</li>
-            <li><strong>Home screen widget</strong> — quick at-a-glance progress without opening the app</li>
+            <li><strong>Collapsible Tasks</strong> — each course's tasks can be expanded or collapsed for a cleaner view, in the example I added a section for todays tasks</li>
+            <li><strong>Interactive Editing</strong> — easily add, edit, or remove courses and their associated tasks to fit your study needs</li>
+            <li><strong>Desktop widget</strong> — quick at-a-glance progress right on your macOS desktop</li>
         </ul>
     </section>
 
     <section>
         <h2>Technical Details</h2>
         <ul>
-            <li>Built with <strong>Swift</strong> and <strong>SwiftUI</strong> for a native iOS experience</li>
-            <li>Uses <strong>WidgetKit</strong> to render an interactive home screen widget</li>
-            <li>Local data persistence for task state and progress</li>
-            <li>Responsive layout that adapts to different widget sizes</li>
-            <li>Custom animations for the plant growth and XP progression</li>
+            <li>Built with <strong>React JSX</strong> for UI rendering, powered by the <strong>Übersicht</strong> desktop widget engine for macOS</li>
+            <li>Custom <strong>SVG</strong> graphics for the knowledge tree visualisation that grows as tasks are completed</li>
+            <li><strong>CSS-in-JS</strong> styling with glassmorphism effects for a modern, translucent aesthetic</li>
+            <li>Local data persistence for task state and progress, so entered tasks are saved and remain after reloads</li>
+            <li>Responsive layout with custom animations for plant growth and XP progression</li>
         </ul>
+        <p style="text-align: justify; margin-top: 16px;">
+            To avoid losing task updates, the widget serializes data to JSON and writes it to a local data file each time state changes.
+            That means courses, task edits, and completion states persist between refreshes and desktop restarts.
+        </p>
+        <pre><code>function saveData(data) {
+  const escaped = JSON.stringify(data).replace(/'/g, "'\\''");
+  run(`echo '${escaped}' &gt; ~/${DATA_FILE}`);
+}</code></pre>
     </section>
 
     <section>
         <h2>Motivation</h2>
         <p style="text-align: justify;">
             Juggling multiple courses with lectures, tutorials, and assignments can be overwhelming.
-            I wanted a tool that lives right on my home screen — no app-switching required — to
-            give me instant visibility into what's done, what's due, and how I'm tracking overall.
-            The gamification elements (XP, levels, badges, and the growing plant) turn routine
-            task-checking into something genuinely rewarding.
+            I wanted a tool that lives right on my home screen to
+            give me instant visibility into what's done, what's due, and how I'm tracking overall. 
+            Sometimes I find that I want to quickly write down a task or check off something I just did, 
+            having it right there on the desktop makes it super convenient. 
+            Plus, I find that gamification elements like XP and levels make the process of checking 
+            off tasks quirky and fun. It's not just about getting things done, but also 
+            about making the journey rewarding and enjoyable.
         </p>
     </section>
 

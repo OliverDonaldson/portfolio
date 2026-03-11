@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Statistical Analysis - Oliver Donaldson</title>
+    <title>Ideas In Progress - Oliver Donaldson</title>
     <link rel="stylesheet" href="../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,17 +94,31 @@
 <div class="project-page">
     <a href="../index.html#projects" class="back-link">&larr; Back to Projects</a>
 
-    <h1>Statistical Analysis</h1>
+    <h1>Ideas In Progress</h1>
 
     <div class="author-info">
         <p><strong>Author:</strong> Oliver Donaldson &nbsp;|&nbsp;
         <strong>Date:</strong> Coming Soon &nbsp;|&nbsp;
-        <strong>Tools:</strong> R, Python, Statistics</p>
+        <strong>Status:</strong> New Project in Development</p>
     </div>
 
     <section>
         <h2>Project Overview</h2>
-        <p>Advanced statistical modeling and hypothesis testing to identify trends and patterns in complex datasets. Details coming soon.</p>
+        <p style="text-align: justify;">
+            I am currently developing new project ideas and will publish the next full case study here soon.
+            This placeholder marks work in progress while I prototype, test, and refine concepts worth
+            turning into complete portfolio projects.
+        </p>
+    </section>
+
+    <section>
+        <h2>What To Expect</h2>
+        <ul>
+            <li>A new project write-up with goals, process, and outcomes</li>
+            <li>Technical stack details and implementation notes</li>
+            <li>Screenshots, design decisions, and lessons learned</li>
+            <li>Code and demo links once the project is ready to share</li>
+        </ul>
     </section>
 </div>
 
