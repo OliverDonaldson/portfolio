@@ -644,15 +644,38 @@
             const link = e.target.closest('a[href]');
             if (!link) return;
             const href = link.getAttribute('href');
-            if (!href || !href.startsWith('http')) return;
-            if (link.hostname === window.location.hostname) return;
+            if (!href) return;
 
             const label = link.getAttribute('aria-label') || link.textContent.trim() || href;
-            gtag('event', 'outbound_click', {
-                link_url: href,
-                link_text: label,
-                page_location: window.location.href
-            });
+
+            // Track mailto links (Hire Me, Say Hello)
+            if (href.startsWith('mailto:')) {
+                gtag('event', 'contact_click', {
+                    link_url: href,
+                    link_text: label,
+                    page_location: window.location.href
+                });
+                return;
+            }
+
+            // Track file downloads (Resume/CV PDF)
+            if (href.match(/\.(pdf|docx?|xlsx?|zip)(\?|$)/i) || link.hasAttribute('download')) {
+                gtag('event', 'file_download', {
+                    link_url: href,
+                    link_text: label,
+                    page_location: window.location.href
+                });
+                return;
+            }
+
+            // Track external links (GitHub, YouTube, LinkedIn, etc.)
+            if (href.startsWith('http') && link.hostname !== window.location.hostname) {
+                gtag('event', 'outbound_click', {
+                    link_url: href,
+                    link_text: label,
+                    page_location: window.location.href
+                });
+            }
         });
     </script>
 </body>
