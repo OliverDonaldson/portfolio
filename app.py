@@ -13,7 +13,7 @@ def inject_ga_id():
 def home():
     return render_template('index.html')  # Homepage (single-page with sections)
 
-@app.route('/project/<project_name>')
+@app.route('/project/<project_name>/')
 def project_detail(project_name):
     return render_template(f'projects/{project_name}.html')  # Individual project pages
 

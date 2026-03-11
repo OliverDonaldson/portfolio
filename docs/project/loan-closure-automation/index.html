@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Study Tracker Widget - Oliver Donaldson</title>
-    <link rel="stylesheet" href="../static/css/style.css">
+    <title>Loan Closure Automation - Oliver Donaldson</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -26,13 +26,13 @@
     <!-- Navigation Bar -->
     <nav class="topnav">
         <div class="nav-links">
-            <a href="../index.html" class="nav-link">Home</a>
-            <a href="../index.html#about" class="nav-link">About</a>
-            <a href="../index.html#projects" class="nav-link">Projects</a>
-            <a href="../index.html#certificates" class="nav-link">Certificates</a>
+            <a href="../../index.html" class="nav-link">Home</a>
+            <a href="../../index.html#about" class="nav-link">About</a>
+            <a href="../../index.html#projects" class="nav-link">Projects</a>
+            <a href="../../index.html#certificates" class="nav-link">Certificates</a>
         </div>
 
-        <a href="../index.html" class="nav-logo">
+        <a href="../../index.html" class="nav-logo">
             <span>OD</span>
         </a>
 
@@ -43,7 +43,7 @@
             <a href="https://www.linkedin.com/in/oliver-donaldson/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
             </a>
-            <a href="../static/files/Oliver%20Donaldson%20CV.pdf" download aria-label="Download CV">
+            <a href="../../static/files/Oliver%20Donaldson%20CV.pdf" download aria-label="Download CV">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             </a>
             <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
@@ -63,10 +63,10 @@
     <!-- Mobile nav overlay -->
     <div class="mobile-nav-overlay" id="mobileNavOverlay">
         <div class="mobile-nav-content">
-            <a href="../index.html" class="mobile-nav-link">Home</a>
-            <a href="../index.html#about" class="mobile-nav-link">About</a>
-            <a href="../index.html#projects" class="mobile-nav-link">Projects</a>
-            <a href="../index.html#certificates" class="mobile-nav-link">Certificates</a>
+            <a href="../../index.html" class="mobile-nav-link">Home</a>
+            <a href="../../index.html#about" class="mobile-nav-link">About</a>
+            <a href="../../index.html#projects" class="mobile-nav-link">Projects</a>
+            <a href="../../index.html#certificates" class="mobile-nav-link">Certificates</a>
             <div class="mobile-nav-socials">
                 <a href="https://github.com/oliver-donaldson" target="_blank" rel="noopener noreferrer">GitHub</a>
                 <a href="https://www.linkedin.com/in/oliver-donaldson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
@@ -100,12 +100,15 @@
         border-bottom: 2px solid var(--accent);
         display: inline-block;
     }
+    .project-page h3 {
+        color: var(--heading-color);
+    }
     .project-page p, .project-page li {
         color: var(--text-secondary);
         line-height: 1.8;
         font-size: 0.98rem;
     }
-    .project-page ul {
+    .project-page ul, .project-page ol {
         padding-left: 24px;
         margin: 12px 0;
     }
@@ -130,11 +133,8 @@
         margin: 30px 0;
     }
     .image-container img {
-        width: auto;
-        max-width: min(100%, 700px);
-        height: auto;
-        display: block;
-        margin: 0 auto;
+        width: 100%;
+        max-width: 700px;
         border-radius: var(--radius);
         box-shadow: 0 8px 30px var(--shadow);
         border: 1px solid var(--border);
@@ -145,18 +145,62 @@
         margin-top: 10px;
         font-size: 0.88rem;
     }
-    .project-page pre {
+    .highlight-box {
         background: var(--bg-card);
-        border: 1px solid var(--border);
+        border-left: 4px solid var(--accent);
         border-radius: var(--radius);
-        padding: 20px;
-        overflow-x: auto;
-        font-size: 0.88rem;
-        line-height: 1.6;
+        padding: 20px 24px;
+        margin: 24px 0;
+        box-shadow: 0 4px 16px var(--shadow);
     }
-    .project-page code {
-        color: var(--accent);
-        font-family: 'Consolas', 'Monaco', monospace;
+    .highlight-box p {
+        margin: 0;
+    }
+    .table-container {
+        overflow-x: auto;
+        margin: 24px 0;
+        padding: 0;
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-main);
+        font-size: 0.92rem;
+    }
+    .styled-table thead tr {
+        background: var(--accent);
+        color: var(--bg-primary);
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+    }
+    .styled-table tbody tr {
+        background: var(--bg-card);
+        color: var(--text-secondary);
+    }
+    .styled-table tbody tr:nth-child(even) {
+        background: var(--bg-secondary);
+    }
+    .styled-table tbody tr:hover {
+        background: var(--tag-bg);
+    }
+    .styled-table td strong {
+        color: var(--text-primary);
+    }
+    .styled-table caption {
+        caption-side: top;
+        text-align: center;
+        font-weight: 700;
+        color: var(--text-primary);
+        padding: 12px;
+        font-size: 0.95rem;
     }
     .back-link {
         display: inline-flex;
@@ -173,85 +217,215 @@
 </style>
 
 <div class="project-page">
-    <a href="../index.html#projects" class="back-link">&larr; Back to Projects</a>
+    <a href="../../index.html#projects" class="back-link">&larr; Back to Projects</a>
 
-    <h1>Study Tracker Widget</h1>
+    <h1>Loan closure confirmation Automation</h1>
 
     <div class="author-info">
-        <p><strong>Author:</strong> Oliver Donaldson &nbsp;|&nbsp;
-        <strong>Date:</strong> March 2026 &nbsp;|&nbsp;
-        <strong>Platform:</strong> macOS (Übersicht / React JSX)</p>
+        <p><strong>Role:</strong> AI &amp; Analytics Intern &nbsp;|&nbsp;
+        <strong>Company:</strong> Harmoney &nbsp;|&nbsp;
+        <strong>Date:</strong> 2025-2026 Summer Internship &nbsp;|&nbsp;
+        <strong>Stack:</strong> TypeScript, React, Kafka, MongoDB, SendGrid, Contentful</p>
     </div>
 
-    <div class="image-container">
-        <img src="../static/images/study-tracker-detail.png" alt="Study Tracker Widget">
-        <p class="caption">The Study Tracker widget on the iOS home screen</p>
-    </div>
-
+    <!-- Project Overview -->
     <section>
         <h2>Project Overview</h2>
         <p style="text-align: justify;">
-            Study Tracker is an iOS widget I built to help organise my university study tasks.
-            It is a desktop widget that provides a compact, glanceable view of course-by-course
-            progress, daily task lists, and a gamified XP &amp; levelling system to keep motivation high. This widget 
-            is interactive, allowing me to check off tasks as I complete them, and it visually represents my progress with a growing plant that flourishes as I get more done.
-            I can add/remove courses and tasks as needed, and the widget updates in real-time to reflect my current status.
-            (The tasks shown are demo data for demonstration purposes, I have done them, I swear!)
+            During my internship at Harmoney, a high-growth FinTech lender operating in New Zealand and Australia, 
+            I was tasked with engineering an end-to-end automation for the Obligations Met Letter - Loan closure confirmation workflow. 
+            The existing process was entirely manual, with operations staff generating closure letters one by one 
+            through an admin portal and emailing them to customers individually, handling 70–80 letters per month.
         </p>
-    </section>
-
-    <section>
-        <h2>Key Features</h2>
-        <ul>
-            <li><strong>Course-based task management</strong> — organise tasks under each course (e.g. DATA 303, DATA 305, STAT 292) with lectures, tutorials, and assignments etc.</li>
-            <li><strong>Progress tracking</strong> — per-course and overall completion percentages with visual progress bars</li>
-            <li><strong>XP &amp; levelling system</strong> — earn experience points for completing tasks, level up, and unlock badges like "First Task" and "All Complete"</li>
-            <li><strong>Growing plant visualisation</strong> — a virtual plant that grows as you complete more tasks, providing a satisfying visual reward</li>
-            <li><strong>Collapsible Tasks</strong> — each course's tasks can be expanded or collapsed for a cleaner view, in the example I added a section for todays tasks</li>
-            <li><strong>Interactive Editing</strong> — easily add, edit, or remove courses and their associated tasks to fit your study needs</li>
-            <li><strong>Desktop widget</strong> — quick at-a-glance progress right on your macOS desktop</li>
-        </ul>
-    </section>
-
-    <section>
-        <h2>Technical Details</h2>
-        <ul>
-            <li>Built with <strong>React JSX</strong> for UI rendering, powered by the <strong>Übersicht</strong> desktop widget engine for macOS</li>
-            <li>Custom <strong>SVG</strong> graphics for the knowledge tree visualisation that grows as tasks are completed</li>
-            <li><strong>CSS-in-JS</strong> styling with glassmorphism effects for a modern, translucent aesthetic</li>
-            <li>Local data persistence for task state and progress, so entered tasks are saved and remain after reloads</li>
-            <li>Responsive layout with custom animations for plant growth and XP progression</li>
-        </ul>
-        <p style="text-align: justify; margin-top: 16px;">
-            To avoid losing task updates, the widget serializes data to JSON and writes it to a local data file each time state changes.
-            That means courses, task edits, and completion states persist between refreshes and desktop restarts.
-        </p>
-        <pre><code>function saveData(data) {
-  const escaped = JSON.stringify(data).replace(/'/g, "'\\''");
-  run(`echo '${escaped}' &gt; ~/${DATA_FILE}`);
-}</code></pre>
-    </section>
-
-    <section>
-        <h2>Motivation</h2>
         <p style="text-align: justify;">
-            Juggling multiple courses with lectures, tutorials, and assignments can be overwhelming.
-            I wanted a tool that lives right on my home screen to
-            give me instant visibility into what's done, what's due, and how I'm tracking overall. 
-            Sometimes I find that I want to quickly write down a task or check off something I just did, 
-            having it right there on the desktop makes it super convenient. 
-            Plus, I find that gamification elements like XP and levels make the process of checking 
-            off tasks quirky and fun. It's not just about getting things done, but also 
-            about making the journey rewarding and enjoyable.
+            My project replaced this with a fully automated, event-driven system that detects when a loan 
+            reaches a zero balance, waits an 8-standard-day buffer for any payment reversals to clear, validates 
+            eligibility, generates a personalised PDF confirmation letter, and emails it directly to the customer 
+            — all without any manual intervention. This would not only eliminate a significant operational burden but also
+            improve the customer experience by providing a guaranteed delivery timeline and reducing the risk of errors.
         </p>
     </section>
 
+    <!-- The Problem -->
     <section>
-        <h2>Links</h2>
-        <p>
-            <a href="https://github.com/OliverDonaldson/Widget" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 600;">
-                View on GitHub &nearr;
-            </a>
+        <h2>The Problem</h2>
+        <p style="text-align: justify;">
+            A manual workflow could create friction at multiple levels:
+        </p>
+        <ul>
+            <li><strong>Customer uncertainty:</strong> After making their final payment, customers can be left in limbo, 
+                often needing to chase support for proof of loan closure to provide to other financial institutions.</li>
+            <li><strong>Operational burden:</strong> The operations team spent significant time each month manually generating 
+                and sending individual closure letters.</li>
+            <li><strong>Compliance risk:</strong> Manual processing could introduce the risk of inconsistent details, missing dates, 
+                incorrect statuses, or delays, which could cause issues with external banks and credit reporting agencies.</li>
+        </ul>
+    </section>
+
+    <!-- Solution Architecture -->
+    <section>
+        <h2>Solution Architecture</h2>
+        <p style="text-align: justify;">
+            The automation I built is event-driven, listening in real time for loan state changes and 
+            responding with a carefully orchestrated pipeline:
+        </p>
+
+        <h3>1. Event Monitoring</h3>
+        <p style="text-align: justify;">
+            The system listens for real-time Kafka events — specifically <strong>PAID_OFF</strong> and 
+            <strong>CANCELLED</strong> loan states. These are the only two closure types the automation handles. 
+            When a qualifying event is detected, the pipeline is triggered.
+        </p>
+
+        <h3>2. Smart Eligibility Filtering</h3>
+        <p style="text-align: justify;">
+            Not every closed loan should receive an automated letter. The system automatically filters out 
+            complex cases — such as debt-sold or consolidated loans — to ensure that only straightforward, 
+            verified closures are processed. This keeps accuracy at 100%.
+        </p>
+
+        <h3>3. The 8-Day Safety Buffer</h3>
+        <div class="highlight-box">
+            <p>
+                This was the most critical design decision. In the real world, a "zero balance" doesn't always mean 
+                the money has truly settled. Direct debits and card payments can bounce days after they appear to clear. 
+                If the system sent a confirmation letter immediately, a customer could take that letter to another bank 
+                to secure a mortgage — only for the original loan to reopen when the payment is dishonoured.
+            </p>
+        </div>
+        <p style="text-align: justify;">
+            To mitigate this risk, the automation enforces an 8-standard-day buffer period. But it doesn't just wait — 
+            it performs a <strong>final validation step</strong> immediately before sending, re-checking the balance 
+            at the last second. If the balance is anything other than zero, the process aborts and logs the event 
+            for the operations team.
+        </p>
+
+        <h3>4. PDF Generation & Delivery</h3>
+        <p style="text-align: justify;">
+            Once validated, the system generates a personalised PDF letter with state-dependent content. 
+            For paid-off loans, the letter confirms the loan has been paid in full and all obligations 
+            under the contract are met. For cancelled loans, it confirms the loan has been cancelled. 
+            Each letter includes the customer's details, loan reference, outstanding balance, final 
+            payoff date, and closure status.
+        </p>
+        <p style="text-align: justify;">
+            The letter also includes a credit reporting statement — for paid-off loans, it confirms 
+            credit agencies will be notified the loan is closed and paid in full; for cancelled loans, 
+            it notes that credit agencies will not show a record. The system automatically identifies 
+            and emails both primary and joint borrowers.
+        </p>
+
+        <h3>5. Self-Service Customer Download</h3>
+        <p style="text-align: justify;">
+            Beyond the automated email, I also built a self-service download feature within the customer portal, 
+            allowing borrowers to access their closure letter at any time — reducing inbound support requests.
+        </p>
+    </section>
+
+    <!-- Risk Mitigation -->
+    <section>
+        <h2>Risk Mitigation</h2>
+        <p style="text-align: justify;">
+            The "clawback" scenario — where a payment is reversed after a closure letter has already been sent — 
+            was the primary risk this project needed to address. The consequences span three areas:
+        </p>
+        <ul>
+            <li><strong>Legal liability:</strong> A closure letter is a formal financial statement. If a customer 
+                uses it to secure lending elsewhere, then the loan reopens, the company has effectively issued 
+                a false document.</li>
+            <li><strong>Reputational damage:</strong> Telling someone they're debt-free and then reversing that 
+                is a terrible customer experience that erodes trust.</li>
+            <li><strong>Credit reporting accuracy:</strong> Premature closure notifications create inconsistencies 
+                with credit agencies and complications for compliance and audit.</li>
+        </ul>
+        <p style="text-align: justify;">
+            The 8-day buffer combined with the final balance re-check was the solution — balancing the customer's 
+            desire for speed with the business's need for absolute finality.
+        </p>
+    </section>
+
+    <!-- Observability & Audit -->
+    <section>
+        <h2>Observability &amp; Audit Trail</h2>
+        <p style="text-align: justify;">
+            For a financial system, auditability is non-negotiable. The automation tracks and persists 
+            key events throughout the pipeline:
+        </p>
+        <div class="table-container">
+            <table class="styled-table">
+                <caption>Key Performance Events</caption>
+                <thead>
+                    <tr>
+                        <th>Event</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Letter Sent</strong></td>
+                        <td>Recorded each time the system successfully emails a closure confirmation (including joint borrowers)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Generation Failed</strong></td>
+                        <td>Triggered if PDF generation or email delivery encounters an error</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Letter Aborted</strong></td>
+                        <td>Recorded if a loan's status changed or a balance reappeared during the buffer period</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Customer Download</strong></td>
+                        <td>Tracks self-service downloads from the customer portal (each download logged separately)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Letter Bounce Back</strong></td>
+                        <td>Tracks if the email delivery fails due to an invalid email address or technical issue (Phase 3)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="text-align: justify;">
+            Events are persisted via the outbox pattern and published to a Kafka topic for downstream 
+            consumption. The email send is idempotent — the system checks for an existing sent event 
+            before triggering, ensuring each customer only receives the letter once. PDF downloads, 
+            however, can be performed multiple times with each download recorded as a separate event 
+            for a complete audit trail.
+        </p>
+        <p style="text-align: justify;">
+            Within the admin portal, every send is logged with a timestamp and marked as a system-generated 
+            send to distinguish it from legacy manual sends. An archived copy of the exact PDF is stored 
+            for future support and compliance reference. Eligibility logs also record why specific loans 
+            were skipped for troubleshooting.
+        </p>
+    </section>
+
+    <!-- Impact -->
+    <section>
+        <h2>Impact</h2>
+        <p style="text-align: justify;">
+            This project replaced a manual, error-prone workflow with a streamlined, event-driven system. The key outcomes:
+        </p>
+        <ul>
+            <li>Eliminated 70–80 manual letter sends per month from the operations workload</li>
+            <li>Reduced customer wait time from days (or weeks of chasing) to a guaranteed 8-day automated delivery</li>
+            <li>Ensured 100% accuracy through smart eligibility filtering and final balance validation</li>
+            <li>Introduced a full audit trail for legal and compliance requirements</li>
+            <li>Added self-service capability, reducing inbound support volume</li>
+        </ul>
+    </section>
+
+    <!-- Reflection -->
+    <section>
+        <h2>Reflection</h2>
+        <p style="text-align: justify;">
+            This was the capstone project of my internship, and the perfect way to apply everything I'd learned 
+            over the summer — from event-driven architecture and database design to thinking carefully about 
+            real-world edge cases like payment reversals and legal implications. Working on a production-level system 
+            that directly impacted operations and customer experience was both challenging and incredibly rewarding.
+        </p>
+        <p style="text-align: justify;">
+            What I valued most wasn't just the technical growth, but the trust and ownership I was given as an intern 
+            to design and build this end-to-end.
         </p>
     </section>
 </div>
@@ -262,7 +436,7 @@
     <footer>
         <div class="footer-inner">
             <p>&copy; 2026 All Rights Reserved.</p>
-            <p>Built with <span class="heart">&hearts;</span> by <a href="../index.html">Oliver Donaldson</a></p>
+            <p>Built with <span class="heart">&hearts;</span> by <a href="../../index.html">Oliver Donaldson</a></p>
         </div>
     </footer>
 
