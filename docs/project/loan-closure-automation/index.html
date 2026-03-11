@@ -625,6 +625,22 @@
                 }
             });
         });
+
+        // ─── GA4 Custom Event: Track outbound link clicks ───
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href]');
+            if (!link) return;
+            const href = link.getAttribute('href');
+            if (!href || !href.startsWith('http')) return;
+            if (link.hostname === window.location.hostname) return;
+
+            const label = link.getAttribute('aria-label') || link.textContent.trim() || href;
+            gtag('event', 'outbound_click', {
+                link_url: href,
+                link_text: label,
+                page_location: window.location.href
+            });
+        });
     </script>
 </body>
 </html>
