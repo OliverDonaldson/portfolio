@@ -857,10 +857,23 @@ section {
     background: var(--section-alt);
 }
 
+.carousel-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 16px;
+    padding-left: 4px;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+}
+
 .carousel-wrapper {
     overflow: hidden;
     max-width: var(--max-width);
-    margin: 0 auto;
+    margin: 0 auto 40px;
 }
 
 .carousel-container {
@@ -871,15 +884,38 @@ section {
     display: flex;
     gap: 20px;
     padding: 10px 0;
+    width: max-content;
+}
+
+.carousel-track.scroll-left {
+    animation: scroll-left 40s linear infinite;
+}
+
+.carousel-track.scroll-right {
+    animation: scroll-right 40s linear infinite;
+}
+
+.carousel-wrapper:hover .carousel-track {
+    animation-play-state: paused;
+}
+
+@keyframes scroll-left {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+@keyframes scroll-right {
+    0% { transform: translateX(-50%); }
+    100% { transform: translateX(0); }
 }
 
 .certificate-card {
-    flex: 0 0 calc(25% - 15px);
+    flex: 0 0 260px;
     background: var(--bg-card);
     border-radius: var(--radius);
     border: 1px solid var(--border);
     overflow: hidden;
-    transition: all var(--transition);
+    transition: transform var(--transition), box-shadow var(--transition);
 }
 
 .certificate-card:hover {
@@ -891,6 +927,14 @@ section {
     width: 100%;
     height: 160px;
     object-fit: cover;
+}
+
+.certificate-card .card-img-icon {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    padding: 20px;
+    background: var(--bg-primary);
 }
 
 .certificate-card p {
@@ -976,12 +1020,14 @@ section {
 }
 
 .activity-image {
-    flex: 0 0 200px;
-    max-width: 200px;
+    flex: 0 0 320px;
+    max-width: 320px;
 }
 
 .activity-image img {
     width: 100%;
+    height: 220px;
+    object-fit: cover;
     border-radius: 8px;
     box-shadow: 0 4px 15px var(--shadow);
     transition: transform var(--transition);
@@ -1280,13 +1326,23 @@ footer .heart {
     }
 
     .certificate-card {
-        flex: 0 0 calc(50% - 10px);
+        flex: 0 0 200px;
     }
 
     .activity-card,
     .activity-card.reverse {
         flex-direction: column;
         text-align: center;
+    }
+
+    .activity-image {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .activity-image img {
+        height: 280px;
     }
 
     .activity-text h3 {
@@ -1320,7 +1376,7 @@ footer .heart {
 
 @media screen and (max-width: 480px) {
     .certificate-card {
-        flex: 0 0 calc(100% - 10px);
+        flex: 0 0 180px;
     }
 
     .hero-heading {
