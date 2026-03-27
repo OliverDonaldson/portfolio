@@ -885,28 +885,12 @@ section {
     gap: 20px;
     padding: 10px 0;
     width: max-content;
+    cursor: grab;
+    will-change: transform;
 }
 
-.carousel-track.scroll-left {
-    animation: scroll-left 40s linear infinite;
-}
-
-.carousel-track.scroll-right {
-    animation: scroll-right 40s linear infinite;
-}
-
-.carousel-wrapper:hover .carousel-track {
-    animation-play-state: paused;
-}
-
-@keyframes scroll-left {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
-
-@keyframes scroll-right {
-    0% { transform: translateX(-50%); }
-    100% { transform: translateX(0); }
+.carousel-track:active {
+    cursor: grabbing;
 }
 
 .certificate-card {

@@ -665,5 +665,102 @@
             }
         });
     </script>
+
+    <!-- Carousel: JS-driven infinite scroll with drag, touch & trackpad -->
+    <script>
+        document.querySelectorAll('.carousel-track').forEach(function(track) {
+            var goesLeft = track.classList.contains('scroll-left');
+            var speed = 0.5;
+            var pos = goesLeft ? 0 : -(track.scrollWidth / 2);
+            var halfWidth = track.scrollWidth / 2;
+            var isDragging = false;
+            var hasDragged = false;
+            var startX, dragStartPos;
+            var resumeTimer;
+
+            function wrapPos() {
+                if (pos <= -halfWidth) pos += halfWidth;
+                if (pos >= 0) pos -= halfWidth;
+            }
+
+            function render() {
+                track.style.transform = 'translateX(' + pos + 'px)';
+            }
+
+            // Block link clicks when dragging
+            track.addEventListener('click', function(e) {
+                if (hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+
+            // Auto-scroll loop
+            function step() {
+                if (!isDragging) {
+                    pos -= goesLeft ? speed : -speed;
+                    wrapPos();
+                    render();
+                }
+                requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+
+            // --- Mouse drag ---
+            track.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                hasDragged = false;
+                startX = e.pageX;
+                dragStartPos = pos;
+                clearTimeout(resumeTimer);
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                var dx = e.pageX - startX;
+                if (Math.abs(dx) > 5) hasDragged = true;
+                pos = dragStartPos + dx;
+                wrapPos();
+                render();
+            });
+
+            document.addEventListener('mouseup', function() {
+                if (!isDragging) return;
+                isDragging = false;
+                // Reset hasDragged after a tick so the click event fires first
+                setTimeout(function() { hasDragged = false; }, 50);
+            });
+
+            // --- Touch swipe ---
+            track.addEventListener('touchstart', function(e) {
+                isDragging = true;
+                startX = e.touches[0].pageX;
+                dragStartPos = pos;
+                clearTimeout(resumeTimer);
+            }, { passive: true });
+
+            track.addEventListener('touchmove', function(e) {
+                if (!isDragging) return;
+                pos = dragStartPos + (e.touches[0].pageX - startX);
+                wrapPos();
+                render();
+            }, { passive: true });
+
+            track.addEventListener('touchend', function() {
+                isDragging = false;
+            });
+
+            // --- Trackpad two-finger horizontal scroll only ---
+            track.parentElement.addEventListener('wheel', function(e) {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                    e.preventDefault();
+                    pos -= e.deltaX;
+                    wrapPos();
+                    render();
+                }
+            }, { passive: false });
+        });
+    </script>
 </body>
 </html>
