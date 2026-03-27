@@ -381,21 +381,19 @@
 
             // --- Touch swipe ---
             track.addEventListener('touchstart', function(e) {
-                isDragging = true;
                 startX = e.touches[0].pageX;
                 dragStartPos = pos;
-                clearTimeout(resumeTimer);
             }, { passive: true });
 
             track.addEventListener('touchmove', function(e) {
-                if (!isDragging) return;
-                pos = dragStartPos + (e.touches[0].pageX - startX);
+                var dx = e.touches[0].pageX - startX;
+                pos = dragStartPos + dx;
                 wrapPos();
                 render();
             }, { passive: true });
 
             track.addEventListener('touchend', function() {
-                isDragging = false;
+                // no-op, auto-scroll continues in step()
             });
 
             // --- Trackpad two-finger horizontal scroll only ---
