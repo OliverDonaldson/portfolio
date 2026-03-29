@@ -375,9 +375,9 @@
             <div class="carousel-container">
                 <div class="carousel-track scroll-left">
                     <div class="certificate-card">
-                        <a href="#" target="_blank">
+                        <a href="static/files/cert-cs50.pdf" target="_blank">
                             <img src="static/images/cert-cs50.jpg" alt="CS50x Certificate">
-                            <p>CS50's Introduction to Computer Science Harvard University</p>
+                            <p>CS50's Introduction to Computer Science — Harvard University</p>
                         </a>
                     </div>
                     <div class="certificate-card">
@@ -912,21 +912,19 @@
 
             // --- Touch swipe ---
             track.addEventListener('touchstart', function(e) {
-                isDragging = true;
                 startX = e.touches[0].pageX;
                 dragStartPos = pos;
-                clearTimeout(resumeTimer);
             }, { passive: true });
 
             track.addEventListener('touchmove', function(e) {
-                if (!isDragging) return;
-                pos = dragStartPos + (e.touches[0].pageX - startX);
+                var dx = e.touches[0].pageX - startX;
+                pos = dragStartPos + dx;
                 wrapPos();
                 render();
             }, { passive: true });
 
             track.addEventListener('touchend', function() {
-                isDragging = false;
+                // no-op, auto-scroll continues in step()
             });
 
             // --- Trackpad two-finger horizontal scroll only ---
