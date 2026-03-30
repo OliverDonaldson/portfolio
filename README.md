@@ -23,18 +23,3 @@ Personal portfolio showcasing my data science and analytics projects, profession
 | Deployment | GitHub Pages (static, via Frozen-Flask) |
 
 The site is built as a Flask app locally for easy template reuse, then "frozen" into static HTML by `freeze.py` and deployed from the `docs/` folder to GitHub Pages.
-
-## Running Locally
-
-```bash
-pip install -r requirements.txt
-python app.py
-# visit http://localhost:5000
-```
-
-To rebuild the static site for GitHub Pages:
-
-```bash
-python freeze.py
-# output goes to docs/ — commit and push to deploy
-```
