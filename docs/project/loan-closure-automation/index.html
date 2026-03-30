@@ -255,7 +255,7 @@
         <ul>
             <li><strong>Customer uncertainty:</strong> After making their final payment, customers can be left in limbo, 
                 often needing to chase support for proof of loan closure to provide to other financial institutions.</li>
-            <li><strong>Operational burden:</strong> The operations team spent significant time each month manually generating 
+            <li><strong>Operational burden:</strong> The operations team may spend significant time each month manually generating 
                 and sending individual closure letters.</li>
             <li><strong>Compliance risk:</strong> Manual processing could introduce the risk of inconsistent details, missing dates, 
                 incorrect statuses, or delays, which could cause issues with external banks and credit reporting agencies.</li>
@@ -272,16 +272,16 @@
 
         <h3>1. Event Monitoring</h3>
         <p style="text-align: justify;">
-            The system listens for real-time Kafka events — specifically <strong>PAID_OFF</strong> and 
-            <strong>CANCELLED</strong> loan states. These are the only two closure types the automation handles. 
+            The system listens for real-time Kafka events, specifically "PAID_OFF" and 
+            "CANCELLED" loan states. These are the only two closure types the automation handles. 
             When a qualifying event is detected, the pipeline is triggered.
         </p>
 
         <h3>2. Smart Eligibility Filtering</h3>
         <p style="text-align: justify;">
             Not every closed loan should receive an automated letter. The system automatically filters out 
-            complex cases — such as debt-sold or consolidated loans — to ensure that only straightforward, 
-            verified closures are processed. This keeps accuracy at 100%.
+            complex cases, such as debt-sold or consolidated loans, to ensure that only straightforward, 
+            verified closures are processed. This prevents the risk of sending inaccurate information to customers in cases where the loan status may not be final or where additional manual review is required.
         </p>
 
         <h3>3. The 8-Day Safety Buffer</h3>
@@ -290,12 +290,12 @@
                 This was the most critical design decision. In the real world, a "zero balance" doesn't always mean 
                 the money has truly settled. Direct debits and card payments can bounce days after they appear to clear. 
                 If the system sent a confirmation letter immediately, a customer could take that letter to another bank 
-                to secure a mortgage — only for the original loan to reopen when the payment is dishonoured.
+                to secure a mortgage, only for the original loan to reopen when the payment is dishonoured.
             </p>
         </div>
         <p style="text-align: justify;">
-            To mitigate this risk, the automation enforces an 8-standard-day buffer period. But it doesn't just wait — 
-            it performs a <strong>final validation step</strong> immediately before sending, re-checking the balance 
+            To mitigate this risk, the automation enforces an 8-standard-day buffer period. But it doesn't just wait, 
+            it performs a final validation step immediately before sending, re-checking the balance 
             at the last second. If the balance is anything other than zero, the process aborts and logs the event 
             for the operations team.
         </p>
@@ -309,7 +309,7 @@
             payoff date, and closure status.
         </p>
         <p style="text-align: justify;">
-            The letter also includes a credit reporting statement — for paid-off loans, it confirms 
+            The letter also includes a credit reporting statement, for paid-off loans, it confirms 
             credit agencies will be notified the loan is closed and paid in full; for cancelled loans, 
             it notes that credit agencies will not show a record. The system automatically identifies 
             and emails both primary and joint borrowers.
@@ -318,7 +318,7 @@
         <h3>5. Self-Service Customer Download</h3>
         <p style="text-align: justify;">
             Beyond the automated email, I also built a self-service download feature within the customer portal, 
-            allowing borrowers to access their closure letter at any time — reducing inbound support requests.
+            allowing borrowers to access their closure letter at any time after the 8-day buffer period or if it has been sent manually by the operations team, reducing inbound support requests.
         </p>
     </section>
 
@@ -326,7 +326,7 @@
     <section>
         <h2>Risk Mitigation</h2>
         <p style="text-align: justify;">
-            The "clawback" scenario — where a payment is reversed after a closure letter has already been sent — 
+            The "clawback" scenario: where a payment is reversed after a closure letter has already been sent, 
             was the primary risk this project needed to address. The consequences span three areas:
         </p>
         <ul>
@@ -339,79 +339,9 @@
                 with credit agencies and complications for compliance and audit.</li>
         </ul>
         <p style="text-align: justify;">
-            The 8-day buffer combined with the final balance re-check was the solution — balancing the customer's 
+            The 8-day buffer combined with the final balance re-check was the solution, balancing the customer's 
             desire for speed with the business's need for absolute finality.
         </p>
-    </section>
-
-    <!-- Observability & Audit -->
-    <section>
-        <h2>Observability &amp; Audit Trail</h2>
-        <p style="text-align: justify;">
-            For a financial system, auditability is non-negotiable. The automation tracks and persists 
-            key events throughout the pipeline:
-        </p>
-        <div class="table-container">
-            <table class="styled-table">
-                <caption>Key Performance Events</caption>
-                <thead>
-                    <tr>
-                        <th>Event</th>
-                        <th>Description</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Letter Sent</strong></td>
-                        <td>Recorded each time the system successfully emails a closure confirmation (including joint borrowers)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Generation Failed</strong></td>
-                        <td>Triggered if PDF generation or email delivery encounters an error</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Letter Aborted</strong></td>
-                        <td>Recorded if a loan's status changed or a balance reappeared during the buffer period</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Customer Download</strong></td>
-                        <td>Tracks self-service downloads from the customer portal (each download logged separately)</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Letter Bounce Back</strong></td>
-                        <td>Tracks if the email delivery fails due to an invalid email address or technical issue (Phase 3)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <p style="text-align: justify;">
-            Events are persisted via the outbox pattern and published to a Kafka topic for downstream 
-            consumption. The email send is idempotent — the system checks for an existing sent event 
-            before triggering, ensuring each customer only receives the letter once. PDF downloads, 
-            however, can be performed multiple times with each download recorded as a separate event 
-            for a complete audit trail.
-        </p>
-        <p style="text-align: justify;">
-            Within the admin portal, every send is logged with a timestamp and marked as a system-generated 
-            send to distinguish it from legacy manual sends. An archived copy of the exact PDF is stored 
-            for future support and compliance reference. Eligibility logs also record why specific loans 
-            were skipped for troubleshooting.
-        </p>
-    </section>
-
-    <!-- Impact -->
-    <section>
-        <h2>Impact</h2>
-        <p style="text-align: justify;">
-            This project replaced a manual, error-prone workflow with a streamlined, event-driven system. The key outcomes:
-        </p>
-        <ul>
-            <li>Eliminated 70–80 manual letter sends per month from the operations workload</li>
-            <li>Reduced customer wait time from days (or weeks of chasing) to a guaranteed 8-day automated delivery</li>
-            <li>Ensured 100% accuracy through smart eligibility filtering and final balance validation</li>
-            <li>Introduced a full audit trail for legal and compliance requirements</li>
-            <li>Added self-service capability, reducing inbound support volume</li>
-        </ul>
     </section>
 
     <!-- Reflection -->
@@ -419,12 +349,17 @@
         <h2>Reflection</h2>
         <p style="text-align: justify;">
             This was the capstone project of my internship, and the perfect way to apply everything I'd learned 
-            over the summer — from event-driven architecture and database design to thinking carefully about 
+            over the summer, from event-driven architecture and database design to thinking carefully about 
             real-world edge cases like payment reversals and legal implications. Working on a production-level system 
-            that directly impacted operations and customer experience was both challenging and incredibly rewarding.
+            that directly impacted operations and customer experience was both challenging and incredibly rewarding. Working on such 
+            a large project enabled me to also reach out to and collaborate with teams across the business, having to cordinate with UX 
+            design teams, Collections, Engineering, Product, Legal, and Compliance to ensure the solution met all requirements and standards.
+            Having opportunities to present my work, collaborate, and recive feedback from not only my team but also to the company at the end of the 
+            internship was truely an invaluable experience that I will carry forward into my career.
         </p>
         <p style="text-align: justify;">
-            What I valued most wasn't just the technical growth, but the trust and ownership I was given as an intern 
+            What I valued most wasn't just the technical growth, but the trust and ownership I was given as an intern, and the opportunity to 
+            see a project through from ideation 
             to design and build this end-to-end.
         </p>
     </section>
