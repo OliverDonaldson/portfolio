@@ -1382,3 +1382,53 @@ footer .heart {
 .text-justify { text-align: justify; }
 .mb-20 { margin-bottom: 20px; }
 .mt-20 { margin-top: 20px; }
+
+/* ============================================================
+   TRANSIT STARFIELD BACKGROUND
+   #starfield-canvas is painted by static/js/starfield.js and sits
+   behind all content. Sections selectively reveal it:
+     • full-fade → stars across the section, veiled behind content
+     • sides     → stars only in the side gutters
+   Skills & Certificates keep their solid background → no stars.
+   ============================================================ */
+#starfield-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    pointer-events: none;          /* never blocks clicks / buttons */
+}
+
+/* Content sits above the canvas. Interactive overlays already sit
+   higher (nav z1000, mobile menu z999, hire-me badge z100). */
+.content,
+footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* ── Clear sections: Home (hero), About, Projects, Experience, Contact ──
+   Fully transparent so the starfield shows cleanly and continuously
+   across them (no veil). Skills & Certificates keep their solid
+   background, so they stay starless. */
+.hero-section,
+.about-section,
+.projects-section,
+.activities-section,
+.contact-section {
+    background: transparent;
+}
+
+/* ── Sides-only: project detail pages (narrower 900px column) ── */
+.content:has(.project-page) {
+    background: linear-gradient(
+        to right,
+        transparent        calc(50% - 600px),
+        var(--bg-primary)  calc(50% - 500px),
+        var(--bg-primary)  calc(50% + 500px),
+        transparent        calc(50% + 600px)
+    );
+}
+
+/* Honour reduced-motion: the canvas itself renders a single static
+   frame (handled in JS); nothing else to do here. */

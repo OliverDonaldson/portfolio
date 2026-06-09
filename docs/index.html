@@ -23,6 +23,9 @@
     
 </head>
 <body>
+    <!-- Transit starfield background (purely decorative) -->
+    <canvas id="starfield-canvas" aria-hidden="true"></canvas>
+
     <!-- Navigation Bar -->
     <nav class="topnav">
         <div class="nav-links">
@@ -161,7 +164,7 @@
             </div>
             <div class="about-stats fade-in-up">
                 <div class="stat-item">
-                    <span class="stat-number" data-target="7">0</span>
+                    <span class="stat-number" data-target="9">0</span>
                     <span class="stat-label">Projects Completed</span>
                 </div>
                 <div class="stat-item">
@@ -954,5 +957,8 @@
             }, { passive: false });
         });
     </script>
+
+    <!-- Transit starfield background animation -->
+    <script src="static/js/starfield.js"></script>
 </body>
 </html>
