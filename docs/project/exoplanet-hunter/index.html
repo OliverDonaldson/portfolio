@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exoplanet Hunter - Oliver Donaldson</title>
+    <link rel="stylesheet" href="../../static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0W51208ZBD"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){ dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', 'G-0W51208ZBD', {
+        'anonymize_ip': true
+      });
+    </script>
+    
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="topnav">
+        <div class="nav-links">
+            <a href="../../index.html" class="nav-link">Home</a>
+            <a href="../../index.html#about" class="nav-link">About</a>
+            <a href="../../index.html#projects" class="nav-link">Projects</a>
+            <a href="../../index.html#certificates" class="nav-link">Certificates</a>
+        </div>
+
+        <a href="../../index.html" class="nav-logo">
+            <span>OD</span>
+        </a>
+
+        <div class="nav-socials">
+            <a href="https://github.com/OliverDonaldson" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/oliver-donaldson/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="../../static/files/Oliver%20Donaldson%20CV.pdf" download aria-label="Download CV">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </a>
+            <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile nav overlay -->
+    <div class="mobile-nav-overlay" id="mobileNavOverlay">
+        <div class="mobile-nav-content">
+            <a href="../../index.html" class="mobile-nav-link">Home</a>
+            <a href="../../index.html#about" class="mobile-nav-link">About</a>
+            <a href="../../index.html#projects" class="mobile-nav-link">Projects</a>
+            <a href="../../index.html#certificates" class="mobile-nav-link">Certificates</a>
+            <div class="mobile-nav-socials">
+                <a href="https://github.com/OliverDonaldson" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://www.linkedin.com/in/oliver-donaldson/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="content">
+        
+<style>
+    .project-page {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 60px 24px;
+    }
+    .project-page h1 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        font-weight: 800;
+        color: var(--heading-color);
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .project-page h2 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--heading-color);
+        margin-top: 48px;
+        margin-bottom: 16px;
+        padding-bottom: 8px;
+        border-bottom: 2px solid var(--accent);
+        display: inline-block;
+    }
+    .project-page h3 {
+        color: var(--heading-color);
+    }
+    .project-page p, .project-page li {
+        color: var(--text-secondary);
+        line-height: 1.8;
+        font-size: 0.98rem;
+    }
+    .project-page ul, .project-page ol {
+        padding-left: 24px;
+        margin: 12px 0;
+    }
+    .project-page li {
+        margin-bottom: 8px;
+    }
+    .project-page section {
+        padding: 0;
+        margin-bottom: 40px;
+    }
+    .author-info {
+        text-align: center;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        margin-bottom: 28px;
+    }
+    .author-info strong {
+        color: var(--text-secondary);
+    }
+    .project-actions {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 14px;
+        margin-bottom: 40px;
+    }
+    .project-actions a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 11px 22px;
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-decoration: none;
+        transition: all var(--transition);
+    }
+    .project-actions .btn-repo {
+        background: var(--accent);
+        color: var(--bg-primary);
+    }
+    .project-actions .btn-repo:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px var(--shadow);
+    }
+    .project-actions .btn-doc {
+        background: var(--bg-card);
+        color: var(--text-primary);
+        border: 1px solid var(--border);
+    }
+    .project-actions .btn-doc:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-2px);
+    }
+    .image-container {
+        text-align: center;
+        margin: 30px 0;
+    }
+    .image-container img {
+        width: 100%;
+        max-width: 700px;
+        border-radius: var(--radius);
+        box-shadow: 0 8px 30px var(--shadow);
+        border: 1px solid var(--border);
+    }
+    .image-container .caption {
+        font-style: italic;
+        color: var(--text-muted);
+        margin-top: 10px;
+        font-size: 0.88rem;
+    }
+    .highlight-box {
+        background: var(--bg-card);
+        border-left: 4px solid var(--accent);
+        border-radius: var(--radius);
+        padding: 20px 24px;
+        margin: 24px 0;
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+    .highlight-box p {
+        margin: 0;
+    }
+    .table-container {
+        overflow-x: auto;
+        margin: 24px 0;
+        padding: 0;
+        background: var(--bg-card);
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        box-shadow: 0 4px 16px var(--shadow);
+    }
+    .styled-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-family: var(--font-main);
+        font-size: 0.92rem;
+    }
+    .styled-table thead tr {
+        background: var(--accent);
+        color: var(--bg-primary);
+        text-align: left;
+    }
+    .styled-table th,
+    .styled-table td {
+        padding: 12px 16px;
+        border: 1px solid var(--border);
+    }
+    .styled-table tbody tr {
+        background: var(--bg-card);
+        color: var(--text-secondary);
+    }
+    .styled-table tbody tr:nth-child(even) {
+        background: var(--bg-secondary);
+    }
+    .styled-table tbody tr:hover {
+        background: var(--tag-bg);
+    }
+    .styled-table td strong {
+        color: var(--text-primary);
+    }
+    .styled-table caption {
+        caption-side: top;
+        text-align: center;
+        font-weight: 700;
+        color: var(--text-primary);
+        padding: 12px;
+        font-size: 0.95rem;
+    }
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        font-weight: 600;
+        color: var(--accent);
+        margin-bottom: 32px;
+        font-size: 0.95rem;
+    }
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="project-page">
+    <a href="../../index.html#projects" class="back-link">&larr; Back to Projects</a>
+
+    <h1>Exoplanet Hunter</h1>
+    <p style="text-align:center; color: var(--text-secondary); font-size: 1.05rem; max-width: 720px; margin: 0 auto 24px;">
+        Detecting transiting exoplanets in NASA TESS &amp; Kepler light curves with a calibrated dual-view 1D CNN.
+    </p>
+
+    <div class="author-info">
+        <p><strong>Type:</strong> Personal research / portfolio piece &nbsp;|&nbsp;
+        <strong>Field:</strong> Data Science &amp; Machine Learning &nbsp;|&nbsp;
+        <strong>Date:</strong> 2026 &nbsp;|&nbsp;
+        <strong>Stack:</strong> Python, PyTorch, Hydra, MLflow, lightkurve, astroquery, scikit-learn</p>
+    </div>
+
+    <div class="project-actions">
+        <a href="https://github.com/OliverDonaldson/exoplanet-hunter" target="_blank" rel="noopener noreferrer" class="btn-repo">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.385-1.335-1.755-1.335-1.755-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.694.825.576C20.565 21.795 24 17.295 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            View Code on GitHub
+        </a>
+        <a href="../../static/files/exoplanet-research-report.pdf" target="_blank" rel="noopener noreferrer" class="btn-doc">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><line x1="10" y1="9" x2="8" y2="9"/></svg>
+            Read the Research Report (PDF)
+        </a>
+    </div>
+
+    <div class="image-container">
+        <img src="../../static/images/project-exoplanet.jpg" alt="Per-target vetting figure for top candidate TOI-4328.01 — phase-folded light curve, odd/even depth test, BLS periodogram, centroid-shift check and calibrated probability">
+        <p class="caption">A per-target vetting figure generated by the pipeline for top pick TOI-4328.01: the phase-folded light curve, odd-vs-even depth test, BLS periodogram, centroid-shift check, and the calibrated per-fold transit probability (ensemble mean 0.989).</p>
+    </div>
+
+    <!-- Project Overview -->
+    <section>
+        <h2>Project Overview</h2>
+        <p style="text-align: justify;">
+            <strong>Exoplanet Hunter</strong> is an end-to-end deep-learning pipeline that decides whether the brightness dips in
+            unreviewed NASA TESS and Kepler targets are genuine planetary transits or false positives — and, crucially, ranks
+            them by a <em>calibrated</em> probability so the most promising candidates can be prioritised for human follow-up.
+            It was a self-directed research project I built to bridge my software-engineering background with my degree in data
+            science and a long-standing interest in astronomy.
+        </p>
+        <p style="text-align: justify;">
+            The whole pipeline runs on real data only — no synthetic light curves in the final training set. It downloads
+            stitched light curves directly from the Mikulski Archive for Space Telescopes (MAST) via <code>lightkurve</code>,
+            cleans, flattens and phase-folds them, builds a dual-view (global + local) representation, and feeds it through a
+            1D convolutional neural network with attention. The output is a probability, an uncertainty estimate, and a
+            six-panel vetting figure for every target.
+        </p>
+        <div class="highlight-box">
+            <p>
+                <strong>The core question:</strong> <em>"Can a deep-learning model trained on real NASA TESS and Kepler data
+                actually identify exoplanet transits — and what would it take to build one?"</em>
+            </p>
+        </div>
+    </section>
+
+    <!-- The Engineering Pivot -->
+    <section>
+        <h2>The Engineering Pivot</h2>
+        <p style="text-align: justify;">
+            My original "dream goal" was a blind transit search that would survey the sky and discover entirely new planets
+            from scratch. Digging into the astrophysics and the data reality reshaped that ambition, and the honest account of
+            <em>why</em> is one of the parts of this project I'm most proud of:
+        </p>
+        <ul>
+            <li><strong>Labels are a hard prerequisite.</strong> A supervised CNN can't learn what a transit looks like without
+                a clean catalogue of confirmed positives and documented false positives. After group-stratifying by host star
+                and filtering for usable signal, the labelled pool collapses to ~3,275 usable training rows.</li>
+            <li><strong>Blind search is compute-infeasible on a laptop.</strong> A from-scratch Box-Least-Squares sweep over a
+                single TESS cycle works out to roughly <em>1,100 years</em> of sequential compute on one MacBook — discovery is a
+                downstream application of a classifier, not something you can train directly toward.</li>
+            <li><strong>The field's real bottleneck is vetting, not detection.</strong> As of May 2026 TESS alone has produced
+                ~7,931 candidates, of which only ~885 are confirmed; roughly 7,000 sit unreviewed in a queue that already
+                exceeds human vetting capacity. The problem isn't finding more anomalies — it's <em>sorting the ones we already
+                have</em>.</li>
+        </ul>
+        <p style="text-align: justify;">
+            So I re-scoped the project to <strong>calibrated candidate ranking</strong> — exactly the output an over-stretched
+            follow-up reviewer needs: trustworthy probabilities and uncertainty estimates that surface the highest-confidence
+            targets and demote obvious false positives.
+        </p>
+    </section>
+
+    <!-- How It Works -->
+    <section>
+        <h2>How It Works</h2>
+        <h3>1. Data &amp; Preprocessing</h3>
+        <p style="text-align: justify;">
+            Light curves are pulled from MAST, stitched, cleaned and flattened, then phase-folded into the dual-view
+            (global + local) representation introduced by Shallue &amp; Vanderburg — a wide view of the whole orbit plus a
+            zoomed-in view of the transit window.
+        </p>
+        <h3>2. The Model</h3>
+        <p style="text-align: justify;">
+            A 1D CNN with <strong>Squeeze-and-Excitation channel attention</strong>, bilateral <strong>multi-head attention</strong>
+            with residual late-fusion, and a <strong>Wide &amp; Deep</strong> auxiliary path that carries nine stellar / transit /
+            centroid-shift features alongside the light-curve towers. A classical Random Forest on hand-crafted features provides
+            a baseline reference.
+        </p>
+        <h3>3. Calibration &amp; Uncertainty</h3>
+        <p style="text-align: justify;">
+            Raw neural networks are overconfident, which makes their probabilities unsafe for ranking. I added post-hoc
+            <strong>temperature scaling</strong> (fitted per fold) so the outputs reflect true likelihoods, plus
+            <strong>MC-Dropout</strong> to attach an uncertainty estimate to every prediction.
+        </p>
+        <h3>4. Reproducible MLOps</h3>
+        <p style="text-align: justify;">
+            Everything is composed with <strong>Hydra</strong> configs and tracked in <strong>MLflow</strong> — every
+            hyperparameter, metric, plot and artefact is version-controlled, and every dataset is rebuildable from the catalogue
+            queries. Training uses 5-fold <code>StratifiedGroupKFold</code> grouped by host star so multi-planet systems can never
+            leak across the train/test boundary and inflate the scores.
+        </p>
+    </section>
+
+    <!-- Results -->
+    <section>
+        <h2>Results</h2>
+        <p style="text-align: justify;">
+            Across 5-fold group-stratified cross-validation on 3,275 TESS + Kepler targets, the final model reaches performance
+            at parity with a recently published peer-reviewed model (Islam's ExoNet, ROC-AUC 0.955) on a comparable dataset:
+        </p>
+        <div class="table-container">
+            <table class="styled-table">
+                <caption>Final model — 5-fold group-stratified cross-validation (mean ± std)</caption>
+                <thead>
+                    <tr><th>Metric</th><th>Score</th><th>What it measures</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>ROC-AUC</strong></td><td>0.9555 ± 0.0044</td><td>Ranking quality: transit vs false positive</td></tr>
+                    <tr><td><strong>PR-AUC</strong></td><td>0.9586 ± 0.0058</td><td>Precision/recall on the rare positive class</td></tr>
+                    <tr><td><strong>F1</strong></td><td>0.888 ± 0.012</td><td>Balance of precision and recall at the best threshold</td></tr>
+                    <tr><td><strong>Brier (calibrated)</strong></td><td>0.0905 ± 0.0130</td><td>How trustworthy the probabilities are</td></tr>
+                    <tr><td><strong>Temperature T*</strong></td><td>1.275 ± 0.250</td><td>Calibration factor (T &gt; 1 ⇒ model was overconfident)</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <p style="text-align: justify;">
+            Every fold clears 0.948 ROC-AUC. The largest single discrimination gain came from the Squeeze-and-Excitation +
+            multi-head-attention + residual-fusion block (+0.040 ROC), and the largest calibration gain from a
+            <code>log1p</code>-transformed centroid-shift feature for distinguishing background eclipsing binaries. Applied to the
+            backlog, the pipeline produces a ranked priority list of ~6,200 unconfirmed candidates, with 146 high-confidence
+            picks (probability ≥ 0.95).
+        </p>
+    </section>
+
+    <!-- What the model attends to -->
+    <section>
+        <h2>What the Model Attends To</h2>
+        <p style="text-align: justify;">
+            Rather than treating the attention block as a black box, I re-ran the multi-head attention at inference to see what it
+            keys on. The robust, repeatable result is that the global tower's attention localises sharply onto the
+            <strong>transit phase</strong> — every query position attends preferentially to the transit, regardless of where it
+            sits in the orbit, and this holds even for a 703-day candidate. That's the clearest interpretability evidence that
+            the model is keying on the physically meaningful part of the signal rather than out-of-transit noise. I report two
+            honest null results alongside it (the local high-resolution tower and the SE channel gates show no comparable
+            structure), because being transparent about what <em>didn't</em> work mattered to me as much as the headline numbers.
+        </p>
+    </section>
+
+    <!-- Development & AI Collaboration -->
+    <section>
+        <h2>Development &amp; AI Collaboration</h2>
+        <p style="text-align: justify;">
+            I built the project in VS Code using Anthropic's Claude (via the Claude Code CLI) as an in-terminal pair-programming
+            and tutoring collaborator. The architecture was deliberately learning-first: as a data-science student rather than an
+            astronomer, I used Claude as an intellectual sounding board and scaffolding tool, then took rigorous ownership of the
+            pipeline — verifying every design choice, reading the peer-reviewed papers behind each component, and refining the
+            system through continuous independent research. The vision, technical execution, judgement and final synthesis are
+            entirely mine; the full methodology, references and limitations are documented in the research report linked above.
+        </p>
+    </section>
+
+    <!-- Reflection -->
+    <section>
+        <h2>Reflection</h2>
+        <p style="text-align: justify;">
+            This project pushed me well beyond textbook machine learning into the friction of real, un-sanitised scientific data.
+            I implemented leakage-safe <code>StratifiedGroupKFold</code> validation, engineered probability-calibration pipelines
+            so the outputs are mathematically trustworthy, moved from loose scripts to reproducible Hydra + MLflow experiment
+            tracking, and had to understand the actual physics — gravity darkening, transit-duration variation and third-light
+            contamination — that separates real stellar signals from clean textbook examples. Most of all it taught me to scope an
+            ambitious idea down to a tractable, genuinely useful problem, and to be honest in writing about what the system can and
+            can't do.
+        </p>
+    </section>
+</div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-inner">
+            <p>&copy; 2026 All Rights Reserved.</p>
+            <p>Built with <span class="heart">&hearts;</span> by <a href="../../index.html">Oliver Donaldson</a></p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // ─── Theme Toggle ───
+        const themeToggle = document.getElementById('themeToggle');
+        const root = document.documentElement;
+        
+        function setTheme(isDark) {
+            root.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        }
+
+        // Default to dark theme
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        setTheme(savedTheme === 'dark');
+        
+        themeToggle.addEventListener('click', () => {
+            const isDark = root.getAttribute('data-theme') === 'dark';
+            setTheme(!isDark);
+        });
+
+        // ─── Mobile Menu ───
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenuBtn.classList.toggle('active');
+            mobileNavOverlay.classList.toggle('active');
+            document.body.classList.toggle('no-scroll');
+        });
+        
+        document.querySelectorAll('.mobile-nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mobileNavOverlay.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+
+        // ─── Slideshow ───
+        let current = 0; 
+        let slides = [];
+        let dots = [];
+        let slideInterval;
+        let isPaused = false;
+        let isAnimating = false;
+            
+        document.addEventListener("DOMContentLoaded", () => {
+            slides = Array.from(document.getElementsByClassName("mySlides"));
+            dots   = Array.from(document.getElementsByClassName("dot"));
+
+            if (!slides.length) return;
+        
+            slides.forEach(s => s.classList.remove('is-current','is-entering','is-exiting'));
+            slides[0].classList.add('is-current');
+            
+            if (dots.length) {
+                dots.forEach(d => d.classList.remove('active'));
+                dots[0].classList.add('active');
+            }
+        
+            startSlideshow();
+        });
+
+        function startSlideshow() {
+            if (slideInterval) clearInterval(slideInterval);
+            slideInterval = setInterval(() => {
+                if (!isPaused && !isAnimating) {
+                    nextSlide();
+                }
+            }, 4000);
+        }
+
+        function nextSlide() {
+            if (isAnimating || slides.length <= 1) return;
+            moveSlide((current + 1) % slides.length);
+        }
+
+        function prevSlide() {
+            if (isAnimating || slides.length <= 1) return;
+            moveSlide((current - 1 + slides.length) % slides.length);
+        }
+
+        function moveSlide(newIndex) {
+            if (newIndex === current || isAnimating) return;
+            
+            isAnimating = true;
+            const oldSlide = slides[current];
+            const newSlide = slides[newIndex];
+            
+            oldSlide.classList.add('is-exiting');
+            newSlide.classList.add('is-entering');
+            
+            setTimeout(() => {
+                oldSlide.classList.remove('is-current', 'is-exiting');
+                newSlide.classList.remove('is-entering');
+                newSlide.classList.add('is-current');
+                
+                if (dots.length) {
+                    dots[current].classList.remove('active');
+                    dots[newIndex].classList.add('active');
+                }
+                
+                current = newIndex;
+                isAnimating = false;
+            }, 600);
+        }
+
+        function currentSlide(n) {
+            moveSlide(n - 1);
+        }
+
+        // Pause on hover
+        document.addEventListener("DOMContentLoaded", () => {
+            const container = document.querySelector('.slideshow-container');
+            if (container) {
+                container.addEventListener('mouseenter', () => { isPaused = true; });
+                container.addEventListener('mouseleave', () => { isPaused = false; });
+            }
+        });
+
+        // ─── Scroll Animations ───
+        function isElementInViewport(el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top >= 0 && rect.top <= (window.innerHeight || document.documentElement.clientHeight);
+        }
+
+        function isElementPartiallyVisible(el) {
+            const rect = el.getBoundingClientRect();
+            return rect.top < (window.innerHeight || document.documentElement.clientHeight) && rect.bottom > 0;
+        }
+
+        function checkScrollAnimations() {
+            document.querySelectorAll('.fade-in-up').forEach(el => {
+                if (isElementPartiallyVisible(el)) el.classList.add('show');
+            });
+
+            document.querySelectorAll('.project-card').forEach(card => {
+                if (isElementPartiallyVisible(card)) card.classList.add('visible');
+            });
+
+            document.querySelectorAll('.activity-card').forEach(card => {
+                if (isElementPartiallyVisible(card)) card.classList.add('visible');
+            });
+
+            // Animate stats numbers
+            document.querySelectorAll('.stat-number[data-target]').forEach(stat => {
+                if (isElementPartiallyVisible(stat) && !stat.classList.contains('counted')) {
+                    stat.classList.add('counted');
+                    animateCounter(stat);
+                }
+            });
+        }
+
+        function animateCounter(el) {
+            const target = parseInt(el.getAttribute('data-target'));
+            const duration = 2000;
+            const start = performance.now();
+            
+            function update(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.floor(target * eased) + '+';
+                if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+        }
+
+        window.addEventListener('scroll', checkScrollAnimations);
+        document.addEventListener('DOMContentLoaded', checkScrollAnimations);
+
+        // ─── Smooth Scroll for anchor links ───
+        document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                const hashIndex = href.indexOf('#');
+                if (hashIndex === -1) return;
+                const targetId = href.substring(hashIndex + 1);
+                const target = document.getElementById(targetId);
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // ─── GA4 Custom Event: Track outbound link clicks ───
+        document.addEventListener('click', function(e) {
+            const link = e.target.closest('a[href]');
+            if (!link) return;
+            const href = link.getAttribute('href');
+            if (!href) return;
+
+            const label = link.getAttribute('aria-label') || link.textContent.trim() || href;
+
+            // Track mailto links (Hire Me, Say Hello)
+            if (href.startsWith('mailto:')) {
+                gtag('event', 'contact_click', {
+                    link_url: href,
+                    link_text: label,
+                    page_location: window.location.href
+                });
+                return;
+            }
+
+            // Track file downloads (Resume/CV PDF)
+            if (href.match(/\.(pdf|docx?|xlsx?|zip)(\?|$)/i) || link.hasAttribute('download')) {
+                gtag('event', 'file_download', {
+                    link_url: href,
+                    link_text: label,
+                    page_location: window.location.href
+                });
+                return;
+            }
+
+            // Track external links (GitHub, YouTube, LinkedIn, etc.)
+            if (href.startsWith('http') && link.hostname !== window.location.hostname) {
+                gtag('event', 'outbound_click', {
+                    link_url: href,
+                    link_text: label,
+                    page_location: window.location.href
+                });
+            }
+        });
+    </script>
+
+    <!-- Carousel: JS-driven infinite scroll with drag, touch & trackpad -->
+    <script>
+        document.querySelectorAll('.carousel-track').forEach(function(track) {
+            var goesLeft = track.classList.contains('scroll-left');
+            var speed = 0.5;
+            var pos = goesLeft ? 0 : -(track.scrollWidth / 2);
+            var halfWidth = track.scrollWidth / 2;
+            var isDragging = false;
+            var hasDragged = false;
+            var startX, dragStartPos;
+            var resumeTimer;
+
+            function wrapPos() {
+                if (pos <= -halfWidth) pos += halfWidth;
+                if (pos >= 0) pos -= halfWidth;
+            }
+
+            function render() {
+                track.style.transform = 'translateX(' + pos + 'px)';
+            }
+
+            // Block link clicks when dragging
+            track.addEventListener('click', function(e) {
+                if (hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+
+            // Auto-scroll loop
+            function step() {
+                if (!isDragging) {
+                    pos -= goesLeft ? speed : -speed;
+                    wrapPos();
+                    render();
+                }
+                requestAnimationFrame(step);
+            }
+            requestAnimationFrame(step);
+
+            // --- Mouse drag ---
+            track.addEventListener('mousedown', function(e) {
+                isDragging = true;
+                hasDragged = false;
+                startX = e.pageX;
+                dragStartPos = pos;
+                clearTimeout(resumeTimer);
+                e.preventDefault();
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (!isDragging) return;
+                var dx = e.pageX - startX;
+                if (Math.abs(dx) > 5) hasDragged = true;
+                pos = dragStartPos + dx;
+                wrapPos();
+                render();
+            });
+
+            document.addEventListener('mouseup', function() {
+                if (!isDragging) return;
+                isDragging = false;
+                // Reset hasDragged after a tick so the click event fires first
+                setTimeout(function() { hasDragged = false; }, 50);
+            });
+
+            // --- Touch swipe ---
+            track.addEventListener('touchstart', function(e) {
+                startX = e.touches[0].pageX;
+                dragStartPos = pos;
+            }, { passive: true });
+
+            track.addEventListener('touchmove', function(e) {
+                var dx = e.touches[0].pageX - startX;
+                pos = dragStartPos + dx;
+                wrapPos();
+                render();
+            }, { passive: true });
+
+            track.addEventListener('touchend', function() {
+                // no-op, auto-scroll continues in step()
+            });
+
+            // --- Trackpad two-finger horizontal scroll only ---
+            track.parentElement.addEventListener('wheel', function(e) {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                    e.preventDefault();
+                    pos -= e.deltaX;
+                    wrapPos();
+                    render();
+                }
+            }, { passive: false });
+        });
+    </script>
+</body>
+</html>
