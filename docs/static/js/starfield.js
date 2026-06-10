@@ -65,6 +65,7 @@
   var dpr = Math.min(window.devicePixelRatio || 1, 2);
   var W = 0, H = 0;
   var stars = [];
+  var builtW = -1;   // viewport width the current star field was built for
 
   function buildStars() {
     var count = Math.round((W * H) / 9000);
@@ -79,7 +80,7 @@
       stars.push({
         baseX: Math.random() * W,
         baseY: Math.random() * H,
-        offX: 0, offY: 0,
+        offX: 0, offY: 0, stretch: 0,
         r: 0.35 + depth * 1.25,
         depth: depth,
         baseAlpha: 0.32 + depth * 0.55,
@@ -109,20 +110,30 @@
     canvas.style.width = W + "px";
     canvas.style.height = H + "px";
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    buildStars();
+    // Only re-seed stars when the WIDTH changes. Mobile browsers fire
+    // resize on every address-bar show/hide (height only) during scroll;
+    // rebuilding there would re-randomise the field and look glitchy.
+    if (W !== builtW || !stars.length) { buildStars(); builtW = W; }
   }
 
   // ── Pointer (gravitational lens) ────────────────────────────
-  var mouseX = -9999, mouseY = -9999;
-  var LENS_R = 150, LENS_PUSH = 16;
+  var mouseX = -9999, mouseY = -9999, lensOn = false;
+  var lastMX = -9999, lastMY = -9999, mvAmt = 0;   // cursor speed → drives the stretch
+  var LENS_R = 150, LENS_PUSH = 16, LENS_STRETCH = 38;
+  var LENS_TINT = { dark: [130, 188, 255], light: [30, 80, 205] }; // lensed-arc blue
   if (finePointer && !reduceMotion) {
     window.addEventListener("mousemove", function (e) {
-      mouseX = e.clientX; mouseY = e.clientY;
+      if (lastMX > -9000) {
+        var dx = e.clientX - lastMX, dy = e.clientY - lastMY;
+        mvAmt = Math.min(1, mvAmt + Math.sqrt(dx * dx + dy * dy) / 42);
+      }
+      lastMX = e.clientX; lastMY = e.clientY;
+      mouseX = e.clientX; mouseY = e.clientY; lensOn = true;
     }, { passive: true });
     window.addEventListener("mouseout", function (e) {
-      if (!e.relatedTarget) { mouseX = -9999; mouseY = -9999; }
+      if (!e.relatedTarget) lensOn = false;   // keep last pos so the stretch eases out
     });
-    window.addEventListener("blur", function () { mouseX = -9999; mouseY = -9999; });
+    window.addEventListener("blur", function () { lensOn = false; });
   }
 
   var scrollY = window.scrollY || 0;
@@ -219,7 +230,7 @@
   }
 
   function startZoom(cb) {
-    if (zoom.active) return;
+    if (zoom.active || glide.active) return;
     zoom.ti = pickZoomTarget();
     if (zoom.ti < 0) { if (cb) cb(); return; }
     var s = stars[zoom.ti];
@@ -295,6 +306,65 @@
     if (p >= 1 && !zoom.done) { zoom.done = true; if (zoom.cb) zoom.cb(); }
   }
 
+  // ── Camera glide (OD logo → home): a fluid pan, no zoom ──────
+  var glide = { active: false, start: 0, dur: 1200, done: false, cb: null, dx: 0, dy: 0 };
+
+  function startGlide(cb) {
+    if (glide.active || zoom.active) return;
+    // straight downward sweep (opposite of the logo at the top)
+    glide.dx = 0;
+    glide.dy = 0.28 * H;
+    glide.active = true; glide.done = false;
+    glide.start = performance.now(); glide.cb = cb;
+    canvas.style.zIndex = "9999";
+    if (!running) start();
+  }
+
+  function drawGlide(now) {
+    var p = (now - glide.start) / glide.dur;
+    if (p > 1) p = 1;
+    var v = mixRGB(VOID, themeMix);
+    var vRGB = (v[0] | 0) + "," + (v[1] | 0) + "," + (v[2] | 0);
+    ctx.fillStyle = "rgb(" + vRGB + ")";
+    ctx.fillRect(0, 0, W, H);
+
+    var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2; // easeInOutCubic
+    var spd = 6 * p * (1 - p);                                         // motion-blur, peaks mid-pan
+    var mag = Math.sqrt(glide.dx * glide.dx + glide.dy * glide.dy) || 1;
+    var nux = glide.dx / mag, nuy = glide.dy / mag;
+
+    ctx.lineCap = "round";
+    for (var i = 0; i < stars.length; i++) {
+      var s = stars[i];
+      var k = 0.5 + s.depth;                       // nearer stars move more (parallax)
+      var x = wrap(s.baseX + glide.dx * e * k, W);
+      var y = wrap(s.baseY + glide.dy * e * k, H);
+      var c = mixRGB(COLORS[s.type], themeMix);
+      var rgb = (c[0] | 0) + "," + (c[1] | 0) + "," + (c[2] | 0);
+      var blur = spd * 12 * k;
+      if (blur > 1.2) {                            // motion-blur streak while moving fast
+        ctx.strokeStyle = "rgba(" + rgb + "," + (s.baseAlpha * 0.9).toFixed(3) + ")";
+        ctx.lineWidth = s.r;
+        ctx.beginPath();
+        ctx.moveTo(x - nux * blur, y - nuy * blur);
+        ctx.lineTo(x, y);
+        ctx.stroke();
+      } else {
+        ctx.fillStyle = "rgba(" + rgb + "," + s.baseAlpha.toFixed(3) + ")";
+        ctx.beginPath();
+        ctx.arc(x, y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    if (p > 0.75) {                                // settle to void for a clean hand-off
+      ctx.fillStyle = "rgba(" + vRGB + "," + ((p - 0.75) / 0.25).toFixed(3) + ")";
+      ctx.fillRect(0, 0, W, H);
+    }
+
+    if (p >= 1 && !glide.done) { glide.done = true; if (glide.cb) glide.cb(); }
+  }
+
   // ── Render ──────────────────────────────────────────────────
   var lastTime = 0;
   function wrap(v, max) { v = v % max; return v < 0 ? v + max : v; }
@@ -303,6 +373,7 @@
     var dt = now - (lastTime || now);
     if (dt > 50) dt = 50;               // clamp after tab refocus
     lastTime = now;
+    mvAmt *= 0.9;                       // cursor-speed memory fades when it stops
 
     if (themeMix !== themeTarget) {
       var step = dt / 300;
@@ -311,6 +382,7 @@
     }
 
     if (zoom.active) { drawZoom(now); return; }
+    if (glide.active) { drawGlide(now); return; }
 
     var v = mixRGB(VOID, themeMix);
     ctx.fillStyle = "rgb(" + (v[0] | 0) + "," + (v[1] | 0) + "," + (v[2] | 0) + ")";
@@ -324,9 +396,10 @@
       var sx = s.baseX;
       var sy = wrap(s.baseY - scrollY * (0.02 + s.depth * 0.06) - now * (0.003 + s.depth * 0.0035), H);
 
-      // gravitational lens: push nearby stars outward, ease back
-      var ptx = 0, pty = 0;
-      if (mouseX > -9000) {
+      // gravitational lens: push nearby stars outward + stretch them
+      // tangentially into a curved arc around the cursor (light bending)
+      var ptx = 0, pty = 0, targetStretch = 0;
+      if (lensOn) {
         var ddx = sx - mouseX, ddy = sy - mouseY;
         var dist = Math.sqrt(ddx * ddx + ddy * ddy);
         if (dist < LENS_R && dist > 0.01) {
@@ -334,10 +407,12 @@
           var push = LENS_PUSH * f * f;
           ptx = (ddx / dist) * push;
           pty = (ddy / dist) * push;
+          targetStretch = f * mvAmt;     // only stretch while the cursor moves
         }
       }
       s.offX += (ptx - s.offX) * 0.12;
       s.offY += (pty - s.offY) * 0.12;
+      s.stretch += (targetStretch - s.stretch) * 0.12;
 
       var alpha = s.baseAlpha;
       var flash = 0;
@@ -369,10 +444,38 @@
         ctx.arc(x, y, s.r * 3.2, 0, Math.PI * 2);
         ctx.fill();
       }
-      ctx.beginPath();
-      ctx.fillStyle = "rgba(" + rgb + "," + alpha.toFixed(3) + ")";
-      ctx.arc(x, y, s.r, 0, Math.PI * 2);
-      ctx.fill();
+      if (s.stretch > 0.04) {
+        // bend the star into a tapered tangential arc (fat middle, super-thin
+        // pointed ends) curving around the cursor, tinted lensed-galaxy blue
+        var rdx = x - mouseX, rdy = y - mouseY;
+        var rad = Math.sqrt(rdx * rdx + rdy * rdy) || 1;
+        var ang = Math.atan2(rdy, rdx);
+        var halfA = Math.min(0.7, (s.stretch * LENS_STRETCH * 0.5) / rad);
+        var maxW = Math.max(0.45, s.r * 0.55);           // thin half-thickness at the middle
+        var tint = mixRGB(LENS_TINT, themeMix), bt = 0.68 * s.stretch;
+        var aA = Math.min(1, alpha + s.stretch * 0.35);  // lensed arcs read a touch brighter
+        var br = (lerp(c[0], tint[0], bt)) | 0,
+            bg = (lerp(c[1], tint[1], bt)) | 0,
+            bb = (lerp(c[2], tint[2], bt)) | 0;
+        ctx.fillStyle = "rgba(" + br + "," + bg + "," + bb + "," + aA.toFixed(3) + ")";
+        ctx.beginPath();
+        var N = 12, i2, t2, a2, w2;
+        for (i2 = 0; i2 <= N; i2++) {                    // outer edge
+          t2 = i2 / N; a2 = ang - halfA + t2 * 2 * halfA; w2 = maxW * Math.sin(Math.PI * t2);
+          ctx.lineTo(mouseX + Math.cos(a2) * (rad + w2), mouseY + Math.sin(a2) * (rad + w2));
+        }
+        for (i2 = N; i2 >= 0; i2--) {                    // inner edge, back to start
+          t2 = i2 / N; a2 = ang - halfA + t2 * 2 * halfA; w2 = maxW * Math.sin(Math.PI * t2);
+          ctx.lineTo(mouseX + Math.cos(a2) * (rad - w2), mouseY + Math.sin(a2) * (rad - w2));
+        }
+        ctx.closePath();
+        ctx.fill();
+      } else {
+        ctx.beginPath();
+        ctx.fillStyle = "rgba(" + rgb + "," + alpha.toFixed(3) + ")";
+        ctx.arc(x, y, s.r, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
       // sparkle glint: a small 4-point cross at peak brightness
       if (flash > 0.45) {
@@ -404,12 +507,12 @@
 
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) stop();
-    else if (!reduceMotion || zoom.active) start();
+    else if (!reduceMotion || zoom.active || glide.active) start();
   });
 
   new MutationObserver(function () {
     themeTarget = targetMixForTheme();
-    if (reduceMotion && !zoom.active) draw(performance.now());
+    if (reduceMotion && !zoom.active && !glide.active) draw(performance.now());
   }).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
 
   // Dive-into-a-star transition when entering the primary (Exoplanet) project
@@ -427,6 +530,20 @@
     function go() { if (navigated) return; navigated = true; window.location.href = dest; }
     startZoom(go);
     setTimeout(go, zoom.dur + 500); // safety net if rAF is throttled
+  }, true);
+
+  // Camera-glide transition when clicking the OD logo (→ home)
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest("a.nav-logo") : null;
+    if (!a) return;
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button !== 0) return;
+    if (reduceMotion) return;                                        // navigate normally
+    e.preventDefault();
+    var dest = a.href;
+    var navigated = false;
+    function go() { if (navigated) return; navigated = true; window.location.href = dest; }
+    startGlide(go);
+    setTimeout(go, glide.dur + 500); // safety net if rAF is throttled
   }, true);
 
   resize();

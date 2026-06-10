@@ -1272,11 +1272,10 @@ footer .heart {
         justify-content: center;
     }
 
+    /* The floating badge overlaps the single-column mobile layout, so
+       hide it here — the Contact section / menu cover the same CTA. */
     .hire-me-badge {
-        width: 100px;
-        height: 100px;
-        bottom: 16px;
-        left: 16px;
+        display: none;
     }
 
     .hire-me-center {
