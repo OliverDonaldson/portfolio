@@ -3,7 +3,9 @@
 
 from flask_frozen import Freezer
 from app import app
+import glob
 import os
+import re
 
 # Configuration for static site generation
 app.config['FREEZER_DESTINATION'] = 'docs'  # GitHub Pages can serve from /docs folder
@@ -24,50 +26,24 @@ if __name__ == '__main__':
     if not os.path.exists('docs'):
         os.makedirs('docs')
     
-    # Create placeholder static files if they don't exist yet
-    # (prevents 404 errors during freeze)
-    placeholders = {
-        'static/files/Oliver Donaldson CV.pdf': b'%PDF-1.4 placeholder',
-        'static/files/certificate1.pdf': b'%PDF-1.4 placeholder',
-        'static/files/certificate2.pdf': b'%PDF-1.4 placeholder',
-        'static/files/certificate3.pdf': b'%PDF-1.4 placeholder',
-        'static/files/certificate4.pdf': b'%PDF-1.4 placeholder',
-    }
-    
-    for filepath, content in placeholders.items():
-        if not os.path.exists(filepath):
-            os.makedirs(os.path.dirname(filepath), exist_ok=True)
-            with open(filepath, 'wb') as f:
-                f.write(content)
-            print(f"  Created placeholder: {filepath}")
-    
-    # Also create placeholder images if missing
-    # (1x1 transparent PNG)
-    png_placeholder = (
-        b'\x89PNG\r\n\x1a\n\x00\x00\x00\rIHDR\x00\x00\x00\x01'
-        b'\x00\x00\x00\x01\x08\x06\x00\x00\x00\x1f\x15\xc4\x89'
-        b'\x00\x00\x00\nIDATx\x9cc\x00\x01\x00\x00\x05\x00\x01'
-        b'\r\n\xb4\x00\x00\x00\x00IEND\xaeB`\x82'
-    )
-    
-    image_files = [
-        'static/images/profile.jpg',
-        'static/images/hero1.jpg', 'static/images/hero2.jpg', 'static/images/hero3.jpg',
-        'static/images/project1.jpg', 'static/images/project2.jpg',
-        'static/images/project3.jpg', 'static/images/project4.jpg',
-        'static/images/cert1.jpg', 'static/images/cert2.jpg',
-        'static/images/cert3.jpg', 'static/images/cert4.jpg',
-        'static/images/activity1.jpg', 'static/images/activity2.jpg',
-        'static/images/analysis_chart1.png',
-    ]
-    
-    for img in image_files:
-        if not os.path.exists(img):
-            os.makedirs(os.path.dirname(img), exist_ok=True)
-            with open(img, 'wb') as f:
-                f.write(png_placeholder)
-            print(f"  Created placeholder: {img}")
-    
+    # Fail loudly on a missing asset rather than writing a placeholder over it.
+    # The old behaviour silently created 1x1 PNGs and stub PDFs, so a broken
+    # reference froze and deployed as an invisible broken image instead of
+    # being caught here.
+    referenced = set()
+    for template in glob.glob('templates/**/*.html', recursive=True):
+        with open(template) as f:
+            body = f.read()
+        for match in re.finditer(r"filename='((?:files|images|js|css)/[^']+)'", body):
+            referenced.add(os.path.join('static', match.group(1)))
+
+    missing = sorted(path for path in referenced if not os.path.exists(path))
+    if missing:
+        print('\n❌ Templates reference files that do not exist:')
+        for path in missing:
+            print(f'  {path}')
+        raise SystemExit(1)
+
     # Freeze the Flask app into static files
     freezer.freeze()
-    print("\n✅ Portfolio frozen to docs/")
+    print(f"\n✅ Portfolio frozen to docs/ ({len(referenced)} static assets verified)")
