@@ -34,7 +34,8 @@ if __name__ == '__main__':
     for template in glob.glob('templates/**/*.html', recursive=True):
         with open(template) as f:
             body = f.read()
-        for match in re.finditer(r"filename='((?:files|images|js|css)/[^']+)'", body):
+        pattern = r"(?:filename=|static_url\()'((?:files|images|js|css)/[^']+)'"
+        for match in re.finditer(pattern, body):
             referenced.add(os.path.join('static', match.group(1)))
 
     missing = sorted(path for path in referenced if not os.path.exists(path))

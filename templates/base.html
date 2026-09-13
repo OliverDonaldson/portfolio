@@ -19,7 +19,7 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="{{ url_for('static', filename='images/favicon.svg') }}" type="image/svg+xml">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ static_url('css/style.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -429,6 +429,6 @@
     </script>
 
     <!-- Transit starfield background animation -->
-    <script src="{{ url_for('static', filename='js/starfield.js') }}"></script>
+    <script src="{{ static_url('js/starfield.js') }}"></script>
 </body>
 </html>
