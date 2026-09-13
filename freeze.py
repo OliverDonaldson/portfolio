@@ -47,4 +47,23 @@ if __name__ == '__main__':
 
     # Freeze the Flask app into static files
     freezer.freeze()
+
+    # GitHub Pages serves this site from /portfolio/, so a root-absolute
+    # /static/... reference resolves to the wrong host root and 404s. Every
+    # asset URL must come out relative. This catches the case where a helper
+    # calls flask.url_for directly and so bypasses Frozen-Flask's
+    # FREEZER_RELATIVE_URLS rewriting.
+    absolute = []
+    for page in glob.glob('docs/**/*.html', recursive=True):
+        with open(page) as f:
+            body = f.read()
+        for match in re.finditer(r'(?:href|src)="(/[^"]*)"', body):
+            absolute.append((page, match.group(1)))
+
+    if absolute:
+        print('\n❌ Root-absolute asset URLs in the frozen output:')
+        for page, url in absolute:
+            print(f'  {page}: {url}')
+        raise SystemExit(1)
+
     print(f"\n✅ Portfolio frozen to docs/ ({len(referenced)} static assets verified)")
