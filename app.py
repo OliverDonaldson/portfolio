@@ -21,12 +21,19 @@ def static_url(filename):
     minutes after a deploy a returning visitor can get the new HTML against
     the stylesheet they already had cached. The hash changes whenever the
     file does, which makes that impossible.
+
+    Resolves through the Jinja environment's url_for rather than Flask's.
+    Frozen-Flask implements FREEZER_RELATIVE_URLS by swapping the Jinja
+    global for its own relative_url_for; calling flask.url_for here would
+    bypass that and emit a root-absolute /static/... path, which 404s on
+    GitHub Pages because the site is served from /portfolio/.
     """
+    resolve = app.jinja_env.globals.get('url_for', url_for)
     path = Path(app.static_folder) / filename
     if not path.exists():
-        return url_for('static', filename=filename)
+        return resolve('static', filename=filename)
     digest = hashlib.md5(path.read_bytes()).hexdigest()[:8]
-    return url_for('static', filename=filename, v=digest)
+    return resolve('static', filename=filename, v=digest)
 
 @app.route('/')
 def home():
