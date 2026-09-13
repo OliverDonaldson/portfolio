@@ -37,6 +37,7 @@
     --section-alt: #1f1f1f;
     --hire-me-bg: #1b1b1b;
     --hire-me-text: #f5f5f5;
+    --caution: #e8a33d;
 }
 
 [data-theme="light"] {
@@ -64,6 +65,7 @@
     --section-alt: #eee;
     --hire-me-bg: #f5f5f5;
     --hire-me-text: #1b1b1b;
+    --caution: #b96f0a;
 }
 
 /* ─── Reset & Base ─── */
@@ -1431,3 +1433,456 @@ footer {
 
 /* Honour reduced-motion: the canvas itself renders a single static
    frame (handled in JS); nothing else to do here. */
+/* ==============================================
+   PROJECT DETAIL PAGES
+   Shared by every templates/projects/*.html page.
+   Previously duplicated inline in each template.
+   ============================================== */
+
+.project-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 60px 24px;
+}
+
+.project-page h1 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    color: var(--heading-color);
+    text-align: center;
+    margin-bottom: 12px;
+}
+
+.project-page h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--heading-color);
+    margin-top: 48px;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--accent);
+    display: inline-block;
+}
+
+.project-page h3 {
+    color: var(--heading-color);
+    margin-top: 24px;
+}
+
+.project-page p,
+.project-page li {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    font-size: 0.98rem;
+}
+
+/* The global reset zeroes margins, so without this every paragraph on a
+   project page butts straight up against the next one. */
+.project-page p {
+    margin-bottom: 16px;
+}
+
+.project-page p:last-child {
+    margin-bottom: 0;
+}
+
+.project-page ul,
+.project-page ol {
+    padding-left: 24px;
+    margin: 12px 0;
+}
+
+.project-page li {
+    margin-bottom: 8px;
+}
+
+.project-page section {
+    padding: 0;
+    margin-bottom: 40px;
+}
+
+.project-page pre {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    overflow-x: auto;
+    font-size: 0.88rem;
+    line-height: 1.6;
+}
+
+.project-page code {
+    color: var(--accent);
+    font-family: 'Consolas', 'Monaco', monospace;
+}
+
+.project-lede {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    max-width: 720px;
+    margin: 0 auto 24px;
+}
+
+.author-info {
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.author-info:has(+ .project-actions) {
+    margin-bottom: 28px;
+}
+
+.author-info strong {
+    color: var(--text-secondary);
+}
+
+/* ─── Action buttons (repo, live site, PDF) ─── */
+.project-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 40px;
+}
+
+.project-actions a {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 22px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: all var(--transition);
+}
+
+.project-actions .btn-repo {
+    background: var(--accent);
+    color: var(--bg-primary);
+}
+
+.project-actions .btn-repo:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+.project-actions .btn-doc {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border);
+}
+
+.project-actions .btn-doc:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: translateY(-2px);
+}
+
+/* ─── Figures ─── */
+.image-container {
+    text-align: center;
+    margin: 30px 0;
+}
+
+.image-container img {
+    width: auto;
+    max-width: min(100%, 700px);
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border-radius: var(--radius);
+    box-shadow: 0 8px 30px var(--shadow);
+    border: 1px solid var(--border);
+}
+
+/* Screenshots that need the full column width to stay legible. */
+.image-container.wide img {
+    max-width: 100%;
+}
+
+.image-container .caption {
+    font-style: italic;
+    color: var(--text-muted);
+    margin-top: 10px;
+    font-size: 0.88rem;
+}
+
+/* ─── Callouts ─── */
+.highlight-box {
+    background: var(--bg-card);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 20px 24px;
+    margin: 24px 0;
+    box-shadow: 0 4px 16px var(--shadow);
+}
+
+.highlight-box p {
+    margin: 0;
+}
+
+.highlight-box p + p {
+    margin-top: 12px;
+}
+
+/* A caveat rather than a headline: limits, caveats, what didn't work. */
+.highlight-box.caution {
+    border-left-color: var(--caution);
+}
+
+/* ─── Tables ─── */
+.table-container {
+    overflow-x: auto;
+    margin: 24px 0;
+    padding: 0;
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    box-shadow: 0 4px 16px var(--shadow);
+}
+
+.styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: var(--font-main);
+    font-size: 0.92rem;
+}
+
+.styled-table thead tr {
+    background: var(--accent);
+    color: var(--bg-primary);
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+}
+
+.styled-table tbody tr {
+    background: var(--bg-card);
+    color: var(--text-secondary);
+}
+
+.styled-table tbody tr:nth-child(even) {
+    background: var(--bg-secondary);
+}
+
+.styled-table tbody tr:hover {
+    background: var(--tag-bg);
+}
+
+.styled-table td strong {
+    color: var(--text-primary);
+}
+
+.styled-table caption {
+    caption-side: top;
+    text-align: center;
+    font-weight: 700;
+    color: var(--text-primary);
+    padding: 12px;
+    font-size: 0.95rem;
+}
+
+/* ─── Headline metric cards ─── */
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin: 28px 0;
+}
+
+.metric-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    text-align: center;
+}
+
+.metric-card .metric-value {
+    display: block;
+    font-size: 1.9rem;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1.2;
+}
+
+.metric-card .metric-label {
+    display: block;
+    margin-top: 8px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-primary);
+}
+
+.metric-card .metric-note {
+    display: block;
+    margin-top: 6px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ─── Pipeline stages ─── */
+.pipeline-flow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin: 24px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.pipeline-flow li {
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    border-radius: 999px;
+    padding: 8px 16px;
+    font-size: 0.84rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.pipeline-flow li::after {
+    content: '→';
+    margin-left: 12px;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.pipeline-flow li:last-child::after {
+    content: none;
+}
+
+/* ─── Stack chips ─── */
+.stack-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.stack-list li {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 0.82rem;
+    margin: 0;
+}
+
+.stack-group {
+    margin-bottom: 20px;
+}
+
+.stack-group h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 4px;
+}
+
+/* ─── Cross-links between project versions ─── */
+.version-note {
+    display: block;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 20px;
+    margin: 32px 0;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: border-color var(--transition);
+}
+
+a.version-note:hover {
+    border-color: var(--accent);
+}
+
+.version-note strong {
+    color: var(--text-primary);
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 32px;
+    font-size: 0.95rem;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 600px) {
+    .project-page {
+        padding: 40px 18px;
+    }
+
+    .metric-card .metric-value {
+        font-size: 1.6rem;
+    }
+}
+
+/* ─── Warp arrival ───
+   Entrance animation for the two Exoplanet pages. Pairs with the
+   "dive into a star" starfield transition that runs when either is
+   opened from the home page (see static/js/starfield.js). */
+@media (prefers-reduced-motion: no-preference) {
+    @keyframes exoArrive {
+        from { opacity: 0; transform: translateY(22px) scale(0.985); filter: blur(3px); }
+        to   { opacity: 1; transform: none; filter: none; }
+    }
+    @keyframes exoTitleGlow {
+        0%   { text-shadow: 0 0 0 transparent; }
+        35%  { text-shadow: 0 0 24px var(--accent); }
+        100% { text-shadow: 0 0 0 transparent; }
+    }
+    .project-page.warp-arrival { animation: exoArrive 0.85s cubic-bezier(0.22, 0.61, 0.36, 1) both; }
+    .project-page.warp-arrival h1 { animation: exoTitleGlow 1.9s ease-out 0.35s both; }
+}
+
+/* ─── Grouped skills ───
+   The skills cloud is split into labelled clusters so a reader can
+   scan for a category rather than parsing one long undifferentiated list. */
+.skill-groups {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.skill-group + .skill-group {
+    margin-top: 32px;
+}
+
+.skill-group-label {
+    text-align: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent);
+    margin-bottom: 16px;
+}
+
+.skill-group .skills-cloud {
+    gap: 12px;
+    max-width: 100%;
+}
